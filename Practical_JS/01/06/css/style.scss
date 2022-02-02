@@ -1,0 +1,50 @@
+$cBlack: black;
+$cWhite: white;
+
+.mobile-menu__btn {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	outline: none !important;
+
+	> span {
+		background-color: $cBlack;
+		width: 35px;
+		height: 2px;
+		display: block;
+		margin-bottom: 9px;
+
+		transition: transform 1.0s;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.menu-open {
+	background-color: $cBlack;
+
+	.mobile-menu__btn {
+		> span {
+			background-color: $cWhite;
+			&:nth-child(1) {
+				transform: translateY(11px) rotate(405deg);
+			}
+
+			&:nth-child(2) {
+				transform: translateX(-18px) scaleX(0);
+			}
+
+			&:nth-child(3) {
+				transform: translateY(-11px) rotate(-405deg);
+			}
+
+			@for $i from 1 through 3 {
+				&:nth-child(#{$i}) {
+					transition-delay: 50ms * $i;
+				}
+			}
+		}
+	}
+}
