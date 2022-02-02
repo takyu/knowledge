@@ -1,0 +1,60 @@
+.mobile-menu-icon {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none !important;
+}
+
+.mobile-menu-icon > span {
+  background-color: black;
+  width: 35px;
+  height: 2px;
+  display: block;
+  margin-bottom: 9px;
+  -webkit-transition: -webkit-transform 1.0s;
+  transition: -webkit-transform 1.0s;
+  transition: transform 1.0s;
+  transition: transform 1.0s, -webkit-transform 1.0s;
+}
+
+.mobile-menu-icon > span:last-child {
+  margin-bottom: 0;
+}
+
+.menu-open {
+  background-color: black;
+}
+
+.menu-open .mobile-menu-icon > span {
+  background-color: white;
+}
+
+.menu-open .mobile-menu-icon > span:nth-child(1) {
+  -webkit-transform: translateY(11px) rotate(405deg);
+          transform: translateY(11px) rotate(405deg);
+}
+
+.menu-open .mobile-menu-icon > span:nth-child(2) {
+  -webkit-transform: translateX(-18px) scaleX(0);
+          transform: translateX(-18px) scaleX(0);
+}
+
+.menu-open .mobile-menu-icon > span:nth-child(3) {
+  -webkit-transform: translateY(-11px) rotate(-405deg);
+          transform: translateY(-11px) rotate(-405deg);
+}
+
+.menu-open .mobile-menu-icon > span:nth-child(1) {
+  -webkit-transition-delay: 50ms;
+          transition-delay: 50ms;
+}
+
+.menu-open .mobile-menu-icon > span:nth-child(2) {
+  -webkit-transition-delay: 100ms;
+          transition-delay: 100ms;
+}
+
+.menu-open .mobile-menu-icon > span:nth-child(3) {
+  -webkit-transition-delay: 150ms;
+          transition-delay: 150ms;
+}
