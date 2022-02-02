@@ -1,0 +1,32 @@
+#container {
+	text-align: center;
+}
+
+.btn {
+	/* 背景色、文字の色 */
+	background-color: white;
+	color: black;
+
+	/* 太さ 形 色 */
+	border: 1px solid black;
+
+	/* 上 右 下 左  -> 枠の内側の余白 */
+	padding: 10px 40px 10px 40px;
+	/* 上下 左右 */
+	/*padding: 10px 40px;*/
+	/* 上下左右 */
+	/*padding: 40px;*/
+
+	/* 文字の太さ 100~900 */
+	font-weight: 600;
+
+	/* ボタンに近づけた時にカーソルが変わる */
+	cursor: pointer;
+
+	/* 上 右 下 左  -> 枠の外側の余白 */
+	margin: 50px 0 50px 0;
+	/* 上下 左右 */
+	/*margin: 10px 40px;*/
+	/* 上下左右 */
+	/*margin: 40px;*/
+}
