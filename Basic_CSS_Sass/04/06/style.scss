@@ -1,0 +1,133 @@
+$cBlack: #333;
+
+@import 'mixin';
+
+#container {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.spinner {
+	width: 100px;
+	height: 100px;
+	background-color: $cBlack;
+	margin: 100px auto;
+
+	@include animation (
+		$name: sk-rotateplane,
+		$duration: 1.2s,
+		$iteration-count: infinite,
+		$timing-function: ease-in-out,
+		$fill-mode: forwards
+	)
+
+}
+
+.double-spinner {
+	width: 100px;
+	height: 100px;
+	position: relative;
+	margin: 100px auto;
+	
+	& > div {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		background-color: $cBlack;
+		opacity: 0.6;
+		position: absolute;
+
+		// Two black circles overlapping
+		top: 0;
+		left: 0;
+
+		@include animation (
+			$name: sk-bounce,
+			$duration: 2s,
+			$iteration-count: infinite,
+			$timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955),
+			$fill-mode: forwards
+		);
+
+		&:nth-child(2) {
+			animation-delay: -1.0s;
+		}
+	}
+}
+
+.rect-spinner {
+	width: 100px;
+	height: 100px;
+	//text-align: center;
+	//letter-spacing: -2px;
+	margin: 100px auto;
+	display: flex;
+	justify-content: space-between;
+	
+	& > div {
+		background-color: $cBlack;
+		height: 100%;
+		width: 15%;
+		//display: inline-block;
+
+		@include animation (
+			$name: sk-wave,
+			$duration: 1.2s,
+			$iteration-count: infinite,
+			$timing-function: ease-in-out
+		);
+
+		@for $i from 1 through 5 {
+			&:nth-child(#{$i}) {
+				/* 
+				When creating a loader,
+				you can set animation-delay to a negative number
+				to indicate that it has already started
+				and to give it a sense of unity.
+				*/
+				animation-delay: -1.3s + $i * 0.1s;
+			}
+		}
+	}
+
+}
+
+@keyframes sk-rotateplane {
+
+	0% {
+		/* 
+		The perspective usually attaches to the parent element,
+		but if you want to set the perspective from the perspective
+		of only the child element, set it to transform option.
+		*/
+		transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+	}
+	50% {
+		transform: perspective(120px) rotateX(-180deg) rotateY(0deg);
+	}
+	100% {
+		transform: perspective(120px) rotateX(-180deg) rotateY(-180deg);
+	}
+
+}
+
+@keyframes sk-bounce {
+	0%, 100% {
+		transform: scale(0);
+	}
+	45%, 55% {
+		transform: scale(1);
+	}
+}
+
+@keyframes sk-wave {
+	0%, 40%, 100% {
+		transform: scaleY(0.4);
+	}
+
+	20% {
+		transform: scaleY(1);
+	}
+}

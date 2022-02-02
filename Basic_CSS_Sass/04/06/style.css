@@ -1,0 +1,242 @@
+#container {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  background-color: #333;
+  margin: 100px auto;
+  -webkit-animation-name: sk-rotateplane;
+          animation-name: sk-rotateplane;
+  -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.double-spinner {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin: 100px auto;
+}
+
+.double-spinner > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation-name: sk-bounce;
+          animation-name: sk-bounce;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+          animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.double-spinner > div:nth-child(2) {
+  -webkit-animation-delay: -1.0s;
+          animation-delay: -1.0s;
+}
+
+.rect-spinner {
+  width: 100px;
+  height: 100px;
+  margin: 100px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.rect-spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 15%;
+  -webkit-animation-name: sk-wave;
+          animation-name: sk-wave;
+  -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-direction: normal;
+          animation-direction: normal;
+  -webkit-animation-fill-mode: none;
+          animation-fill-mode: none;
+}
+
+.rect-spinner > div:nth-child(1) {
+  /* 
+				When creating a loader,
+				you can set animation-delay to a negative number
+				to indicate that it has already started
+				and to give it a sense of unity.
+				*/
+  -webkit-animation-delay: -1.2s;
+          animation-delay: -1.2s;
+}
+
+.rect-spinner > div:nth-child(2) {
+  /* 
+				When creating a loader,
+				you can set animation-delay to a negative number
+				to indicate that it has already started
+				and to give it a sense of unity.
+				*/
+  -webkit-animation-delay: -1.1s;
+          animation-delay: -1.1s;
+}
+
+.rect-spinner > div:nth-child(3) {
+  /* 
+				When creating a loader,
+				you can set animation-delay to a negative number
+				to indicate that it has already started
+				and to give it a sense of unity.
+				*/
+  -webkit-animation-delay: -1s;
+          animation-delay: -1s;
+}
+
+.rect-spinner > div:nth-child(4) {
+  /* 
+				When creating a loader,
+				you can set animation-delay to a negative number
+				to indicate that it has already started
+				and to give it a sense of unity.
+				*/
+  -webkit-animation-delay: -0.9s;
+          animation-delay: -0.9s;
+}
+
+.rect-spinner > div:nth-child(5) {
+  /* 
+				When creating a loader,
+				you can set animation-delay to a negative number
+				to indicate that it has already started
+				and to give it a sense of unity.
+				*/
+  -webkit-animation-delay: -0.8s;
+          animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% {
+    /* 
+		The perspective usually attaches to the parent element,
+		but if you want to set the perspective from the perspective
+		of only the child element, set it to transform option.
+		*/
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(-180deg) rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-180deg);
+            transform: perspective(120px) rotateX(-180deg) rotateY(-180deg);
+  }
+}
+
+@keyframes sk-rotateplane {
+  0% {
+    /* 
+		The perspective usually attaches to the parent element,
+		but if you want to set the perspective from the perspective
+		of only the child element, set it to transform option.
+		*/
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(0deg);
+            transform: perspective(120px) rotateX(-180deg) rotateY(0deg);
+  }
+  100% {
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-180deg);
+            transform: perspective(120px) rotateX(-180deg) rotateY(-180deg);
+  }
+}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  45%, 55% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes sk-bounce {
+  0%, 100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  45%, 55% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes sk-wave {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+            transform: scaleY(0.4);
+  }
+  20% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes sk-wave {
+  0%, 40%, 100% {
+    -webkit-transform: scaleY(0.4);
+            transform: scaleY(0.4);
+  }
+  20% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
