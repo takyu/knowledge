@@ -1,0 +1,12 @@
+#FileETag None
+
+<IfModule mod_expires.c>
+	ExpiresActive On
+	<FilesMatch "\.(png|jpe?g|gif|css|js|html)$">
+		# accessはアクセスがあった日から
+		ExpiresDefault "access plus 2 week"
+
+		# modificationはファイルが編集された日から
+		#ExpiresDefault "modification plus 2 week"
+	</FilesMatch>
+</IfModule>
