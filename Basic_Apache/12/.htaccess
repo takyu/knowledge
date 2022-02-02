@@ -1,0 +1,31 @@
+#
+# Question.1 :
+# Forward requests that come in .html to php with the same file name.
+#
+# For example)
+# http://localhost:8888/Basic_apache/12/rewrite-test/file1.html
+# -> http://localhost:8888/Basic_apache/12/rewrite-test/file1.php
+#
+RewriteEngine On
+RewriteBase /Basic_apache/12/rewrite-test/
+
+# /? is match whether the previous letter is there or not.
+# this case, /12/ or 12/
+#RewriteRule /?rewrite-test/(.+)\.html$ $1.php [R]
+
+#
+# Question.2 :
+# When sending a request for a file in rewrite-test/sub1,
+# if a file exists in sub2 with the same file name, please show the file in sub2.
+# If the file does not exist in sub2, display the file in sub1.
+#
+# For example）
+# http://localhost:8888/Basic_apache/12/rewrite-test/sub1/file1.html
+# -> http://localhost:8888/Basic_apache/12/rewrite-test/sub2/file1.html
+# 
+# http://localhost:8888/Basic_apache/12/rewrite-test/sub1/file2.html
+# -> Internal Redirect does not execute.
+#
+RewriteCond /Users/[Username]/Develope/knowledge/Basic_apache/12/rewrite-test/sub2/$1 -f [OR]
+RewriteCond /Users/[Username]/Develope/knowledge/Basic_apache/12/rewrite-test/sub2/$1 -d
+RewriteRule /?rewrite-test/sub1/(.*) sub2/$1
