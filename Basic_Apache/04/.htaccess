@@ -1,0 +1,8 @@
+# /Basic_apacheへ飛ばす
+Redirect /Basic_apache/04 /Basic_apache
+
+# URLもリダイレクト先に指定可能
+Redirect /Basic_apache/04 http://google.co.jp
+
+# リダイレクトループ
+Redirect /Basic_apache/04 /Basic_apache/04/sub1
