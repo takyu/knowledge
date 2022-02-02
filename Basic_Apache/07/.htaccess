@@ -1,0 +1,28 @@
+RewriteEngine On
+#
+# 置換前のpatternのパスにはこのファイルからの相対パスを、
+# 置換後のsubstitutionのパスにはドメイン以降の絶対パスを記述
+#
+
+# file-URL path
+#RewriteRule rewrite-test/index.html /Basic_apache/07/rewrite-test/tmp.html
+
+# absolute path
+#RewriteRule rewrite-test/index.html http://google.com
+
+# F flag
+#RewriteRule rewrite-test/index.html - [F]
+
+# jpg -> png
+#RewriteRule rewrite-test/images/cat_nekoko.jpg /Basic_apache/07/rewrite-test/images/cat_tomomo.png
+
+# sub1 -> sub2
+# sub1にアクセスした段階で置換されるので、sub1/file1.htmlを指定してもsub2へ
+#RewriteRule rewrite-test/sub1/ /Basic_apache/07/rewrite-test/sub2/
+
+# RewriteBaseを用いる。
+RewriteBase /Basic_apache/07/rewrite-test/
+RewriteRule rewrite-test/sub1/ sub2/
+RewriteRule rewrite-test/images/cat_nekoko.jpg images/cat_tomomo.png
+
+
