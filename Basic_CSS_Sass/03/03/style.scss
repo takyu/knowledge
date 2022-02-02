@@ -1,0 +1,70 @@
+/*
+#container {
+	text-align: center;
+}
+
+.btn {
+	background-color: white;
+	color: black;
+	border: 1px solid black;
+	padding: 10px 40px;
+	margin: 50px 0;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.btn:hover {
+	background-color: black;
+	color: aqua;
+}
+*/
+
+// 変数
+$cWhite: white;
+$cBlack: black;
+$cAqua: Aqua;
+
+#container {
+	text-align: center;
+
+	/*
+	"&"は親要素を表す。
+	但し、親要素の中の子要素というように、CSSで半角スペースを空けて
+	書く場合は、省略できる。
+	*/
+	// #container .btn
+	//.btn {
+	//	background-color: $cWhite;
+	//}
+}
+
+.btn {
+	background-color: $cWhite;
+	color: $cBlack;
+	border: 1px solid $cBlack;
+	padding: 10px 40px;
+	margin: 50px 0;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s;
+
+	// .btn:hover
+	&:hover {
+		background-color: $cBlack;
+		color: $cAqua;
+	}
+
+	/*
+	文字列の結合も可能になる
+	*/
+	// .btn-cube
+	//&-cube {
+	//	color: $cAqua;
+
+	//	// .btn-cube .inner
+	//	.inner {
+	//		color: $cAqua;
+	//	}
+	//}
+}
