@@ -1,0 +1,118 @@
+$cOrange: orange;
+$cBlue: blue;
+$cRed: red;
+$cGreen: green;
+$cPurple: purple;
+$cPink: pink;
+
+a {
+	color: $cOrange;
+
+	&:visited {
+		color: $cBlue;
+	}
+
+	&:hover {
+		color: $cRed;
+	}
+
+	&:focus {
+		color: $cGreen;
+	}
+
+	&:active {
+		color: $cPurple;
+	}
+}
+
+.div1 {
+	span {
+		color: $cPink;
+
+		// 3番目の要素
+		//&:nth-child(3) {
+		//	color: $cPurple;
+		//}
+
+		// 偶数
+		//&:nth-child(even) {
+		//	color: $cPurple;
+		//}
+
+		// 奇数
+		//&:nth-child(odd) {
+		//	color: $cPurple;
+		//}
+
+		// 3の倍数の要素
+		//&:nth-child(3n) {
+		//	color: $cPurple;
+		//}
+
+		// 4の倍数の要素
+		//&:nth-child(4n) {
+		//	color: $cPurple;
+		//}
+
+		// 1番目の要素
+		//&:first-child {
+		//	color: $cPurple;
+		//}
+
+		// 最後の要素
+		//&:last-child {
+		//	color: $cPurple;
+		//}
+
+		// .clsクラスが振られていない要素に適用
+		&:not(.cls) {
+			color: $cPurple;
+		}
+	}
+}
+
+.div2 {
+	span {
+		color: $cPink;
+
+		// div2要素の1番目のstrong要素はspan要素でないために適用しない
+		&:nth-child(1) {
+			color: $cPurple;
+		}
+
+		// div2要素のspan要素の中の1番目の要素を探しに行くために適用する。
+		//&:nth-of-type(1) {
+		//	color: $cPurple;
+		//}
+
+		// 偶数
+		//&:nth-of-type(even) {
+		//	color: $cPurple;
+		//}
+
+		// 奇数
+		//&:nth-of-type(odd) {
+		//	color: $cPurple;
+		//}
+
+		// 3の倍数の要素
+		//&:nth-of-type(3n) {
+		//	color: $cPurple;
+		//}
+
+		// 4の倍数の要素
+		//&:nth-of-type(4n) {
+		//	color: $cPurple;
+		//}
+
+		// 1番目の要素
+		&:first-of-type {
+			color: $cPurple;
+		}
+
+		// 最後の要素
+		&:last-of-type {
+			color: $cPurple;
+		}
+	}
+}
