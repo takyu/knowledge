@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteBase /Basic_apache/10/rewrite-test/
+
+# このRewriteCondは一行下のRewriteRuleにのみかかる
+RewriteCond %{HTTP_HOST} ^localhost
+#RewriteRule .? - [F]
+RewriteRule rewrite-test/sub1/(.+\.html) sub2/$1
+RewriteRule rewrite-test/images/(\w{3}).jpg images/$1.png
