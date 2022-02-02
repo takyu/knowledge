@@ -1,0 +1,215 @@
+$cBlack: black;
+$cWhite: white;
+$cTeal: teal;
+$cMenuOpen: $cBlack;
+$cMenuClose: $cBlack;
+$cCover: rgba(0, 0, 0, 0.2);
+$cSubTitle: #535353;
+
+#container {
+	position: relative;
+	background-color: $cTeal;
+	height: 100vh;
+
+	// メニューを消すために表示優先度を高くする
+	z-index: 2;
+
+	// .menu-openのtransformを滑らかにする
+	transition: all 1.0s;
+}
+
+.header {
+	background-color: $cWhite;
+	height: 100px;
+	display: flex;
+
+	// 右側に
+	justify-content: flex-end;
+
+	// 上下中央揃え
+	align-items: center;
+}
+
+body {
+	// bodyの余白を消す
+	margin: 0;
+}
+
+.mobile-menu {
+
+	// メニューを背面に持っていく
+	position: fixed;
+
+	// 右に寄せる
+	right: 0;
+	
+	// 上から60px
+	top: 60px;
+
+	// mobile-menu自体に横幅を持たせる
+	width: 300px;
+
+	// 各menuリストを左揃えに
+	text-align: left;
+
+	// menuが開いていない際のcoverの状態
+	&__cover {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: $cCover;
+
+		// 開いていない時はカバーしない
+		opacity: 0;
+
+		// 見えてなくてもカバーはしている -> カバーそのものの機能を無効化
+		visibility: hidden;
+
+		/* 
+			opacityはアニメーションを適用できるが、
+			visibilityはアニメーションできない。
+			-> hidden と visible しかないため。
+		*/
+
+		transition: opacity 1s;
+	}
+
+	// BEM記法
+	&__main {
+
+		// ブラウザがデフォルトで用意しているパディングを0に
+		padding: 0;
+
+		// メニューリストが奥から出てくる3D表現を実現するために親要素に対して以下を適用
+		perspective: 2000px; // 奥行き、2000px手前から見る
+		transform-style: preserve-3d;
+	}
+	&__item {
+		// リスト表示をオフ
+		list-style: none;
+
+		// 横幅いっぱいに
+		display: block;
+		
+		// 初期位置奥側に設定
+		transform: translate3d(0, 0, -1000px);
+		
+		// リストアイテム左右に対して余白
+		padding: 0 40px; // 上下 左右
+		
+		// メニューが開かれた際の状態を何秒間で実行させるか
+		transition: transform 0.5s, opacity 0.5s;
+		
+		// デフォルトの状態ではopacity:0
+		opacity: 0;
+	}
+	&__link {
+		// 横幅いっぱいに
+		display: block;
+
+		// リストごとに間隔を
+		margin-top: 30px;
+
+		color: $cBlack;
+
+		// リンクタグの下線のデコレーションを消す
+		text-decoration: none;
+	}
+}
+
+.main-title {
+	font-weight: 600;
+	font-size: 25px;
+}
+.sub-title {
+	// 横幅いっぱいに -> 必ず折り返す
+	display: block;
+
+	font-size: 14px;
+	color: $cSubTitle;
+}
+
+.mobile-menu__btn {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	outline: none !important;
+
+	> span {
+		background-color: $cMenuClose;
+		width: 35px;
+		height: 2px;
+		display: block;
+		margin-bottom: 9px;
+
+		transition: transform 1.0s;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.menu-open {
+
+	// メニューが左下にずれる実装
+	#container {
+		transform: translate(-300px, 60px);
+
+		// #containerが移動した際の影
+		box-shadow: 0 8px 40px -10px $cCover;
+	}
+
+	.mobile-menu {
+
+		// 開いた時にカバーさせる
+		&__cover {
+			opacity: 1;
+			visibility: visible;
+
+			// カバーされている部分を押してもメニューが閉まるのを明示的にする
+			// -> その部分の実装はmain.js
+			cursor: pointer;
+		}
+
+		&__item {
+			// 奥側に設定しているメニュー表示を無効化
+			transform: none;
+	
+			// opacity:1に
+			opacity: 1;
+
+			// 各リストが現れる時間を遅延させる
+			@for $i from 1 through 5 {
+				&:nth-child(#{$i}) {
+					transition-delay: $i * 0.1s;
+				}
+			}
+		}
+	}
+
+	.mobile-menu__btn {
+		> span {
+			background-color: $cMenuOpen;
+			&:nth-child(1) {
+				transform: translateY(11px) rotate(405deg);
+			}
+
+			&:nth-child(2) {
+				transform: translateX(-18px) scaleX(0);
+			}
+
+			&:nth-child(3) {
+				transform: translateY(-11px) rotate(-405deg);
+			}
+
+			@for $i from 1 through 3 {
+				&:nth-child(#{$i}) {
+					transition-delay: 50ms * $i;
+				}
+			}
+		}
+	}
+}
