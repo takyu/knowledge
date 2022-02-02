@@ -1,0 +1,38 @@
+// divの大きさに合わせて使いたい時に使用する
+.bg-img {
+	height: 500px;
+	width: 300px;
+	background-image: url(images/400x250.png);
+
+	// defaultでオンになっている
+	//background-repeat: repeat;
+	background-repeat: no-repeat;
+
+	// divの要素に合わせて表示される (アスペクト比率は保たれる)
+	background-size: cover;
+
+	/*
+	backgroundの画像を、ブラウザの大きさによるトリムを行わないで表示
+	ただし、divによる余白ができてしまう。
+	*/
+	//background-size: contain;
+
+	// トリムされた際の画像の真ん中を中心に表示する
+	background-position: center;
+}
+
+img {
+
+	width: 300px;
+	height: 500px;
+
+	// divのbackground-size: cover;と同じ役割
+	//object-fit: cover;
+	
+}
+
+@media screen and (min-width: 600px) {
+	.bg-img {
+	  background-image: url(images/800x250.png);
+	}
+  }
