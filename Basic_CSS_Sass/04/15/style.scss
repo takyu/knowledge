@@ -1,0 +1,25 @@
+// cssでのインポートの仕方
+//@import url('mobile.css') screen and (max-width: 600px);
+//@import url('desktop.css') screen and (min-width: 601px);
+
+/* 
+モバイルのCSSをbaseにして、デスクトップへのサイズを指定していくやり方を
+モバイルファーストの考え方という。
+-> 基本的にこちらの考え方を適用する。
+*/
+// sassでの書き方
+@import 'mobile.scss';
+
+@media screen and (min-width: 601px){
+	@import 'desktop.scss';
+}
+
+/* 
+デスクトップのCSSをbaseにして、モバイルへのサイズを指定していくやり方を
+デスクトップファーストの考え方という。
+*/
+@import 'desktop.scss';
+
+@media screen and (max-width: 600px){
+	@import 'desktop.scss';
+}
