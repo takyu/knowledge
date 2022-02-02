@@ -1,0 +1,103 @@
+@charset "UTF-8";
+.parent {
+  background-color: gray;
+  width: 100%;
+  height: 600px;
+}
+
+.child {
+  background-color: orange;
+  color: white;
+  font-weight: 600;
+}
+
+.child.v2 {
+  background-color: red;
+}
+
+.child.v3 {
+  background-color: blue;
+}
+
+/* 
+横方向のレイアウト
+*/
+/* 
+上下方向のレイアウト
+*/
+.parent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /*
+	横並びに揃える
+	要素を横並びに反対に並べることをしない場合、省略可能
+	*/
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  /*
+	左右の揃え方の設定
+	justify-content: position
+	*/
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  /* 
+	上下の揃え方の設定
+	align-items: position;
+	*/
+  /* 
+	縦並びに変える
+	縦並びに変えた時、justify-contentとalign-itemsの役割が逆になることに注意
+	*/
+  /* 
+	flex-basisプロパティでそれぞれの子要素が確保したい大きさが確保されない時、
+	改行して表示する
+	*/
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.child {
+  /* 
+	それぞれの子要素が均等に親要素を満たすように分割される
+	それぞれの子要素に比率を設定することで、
+	親要素を元にそれぞれの子要素がその比率に対して設定される
+	flex-grow: 比率;
+	*/
+  /* 
+	一つの子要素に対して必ず確保したい大きさを指定することができる
+	flex-basis: 大きさ;
+	*/
+  -ms-flex-preferred-size: 300px;
+      flex-basis: 300px;
+  /* 
+	flex-basisプロパティを子要素全体に設定し、その中でも特定の子要素に対して
+	必ず確保してほしい場合は、"flex-shrink: 0;" を指定する
+	*/
+}
+
+.child.v1 {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.child.v2 {
+  -webkit-box-flex: 2;
+      -ms-flex-positive: 2;
+          flex-grow: 2;
+}
+
+.child.v3 {
+  -webkit-box-flex: 3;
+      -ms-flex-positive: 3;
+          flex-grow: 3;
+}
+
+.child.v1 {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}

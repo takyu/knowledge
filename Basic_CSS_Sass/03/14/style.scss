@@ -1,0 +1,149 @@
+$cGray: gray;
+$cOrange: orange;
+$cRed: red;
+$cBlue: blue;
+$cWhite: white;
+
+.parent {
+	background-color: $cGray;
+	width: 100%;
+	height: 600px;
+}
+
+.child {
+	background-color: $cOrange;
+	color: $cWhite;
+	//width: 100px;
+	//height: 100px;
+	font-weight: 600;
+	
+	&.v2 {
+		background-color: $cRed;
+	}
+	&.v3 {
+		background-color: $cBlue;
+	}
+}
+
+/* 
+横方向のレイアウト
+*/
+
+// インライン要素中央揃え
+//.parent {
+//	text-align: center;
+//	letter-spacing: -6px;
+//}
+//.child {
+//	display: inline-block;
+//}
+
+// ブロック要素中央揃え
+//.parent {
+//}
+//.child {
+//	margin: 0 auto;
+//}
+
+/* 
+上下方向のレイアウト
+*/
+
+// 子要素を重ねたい場合
+//.parent {
+//	position: relative;
+//}
+//.child {
+//	position: absolute;
+//	top: 50%;
+//	left: 50%;
+//	transform: translate(-50%, -50%);
+//}
+
+// 子要素を重ねたくない場合
+.parent {
+	display: flex;
+	
+	/*
+	横並びに揃える
+	要素を横並びに反対に並べることをしない場合、省略可能
+	*/
+	flex-direction: row;
+	// 要素を横並びに反対に並べる
+	//flex-direction: row-reverse;
+
+	/*
+	左右の揃え方の設定
+	justify-content: position
+	*/
+	// 左
+	//justify-content: flex-start;
+	// 真ん中
+	justify-content: center;
+	// 右
+	//justify-content: flex-end;
+	// 間を均等に開ける
+	//justify-content: space-around;
+	// 端は詰めてその間を均等に
+	//justify-content: space-between;
+
+	/* 
+	上下の揃え方の設定
+	align-items: position;
+	*/
+	// 上
+	//align-items: flex-start;
+	// 真ん中
+	//align-items: center;
+	// 下
+	//align-items: flex-end;
+
+	/* 
+	縦並びに変える
+	縦並びに変えた時、justify-contentとalign-itemsの役割が逆になることに注意
+	*/
+	//flex-direction: column;
+	// 要素を縦並びに反対に並べる
+	//flex-direction: column-reverse;
+
+	/* 
+	flex-basisプロパティでそれぞれの子要素が確保したい大きさが確保されない時、
+	改行して表示する
+	*/
+	flex-wrap: wrap;
+	
+}
+.child {
+	/* 
+	それぞれの子要素が均等に親要素を満たすように分割される
+	それぞれの子要素に比率を設定することで、
+	親要素を元にそれぞれの子要素がその比率に対して設定される
+	flex-grow: 比率;
+	*/
+	&.v1 {
+		flex-grow: 1;
+	}
+	&.v2 {
+		flex-grow: 2;
+	}
+	&.v3 {
+		flex-grow: 3;
+	}
+	/* 
+	一つの子要素に対して必ず確保したい大きさを指定することができる
+	flex-basis: 大きさ;
+	*/
+	//&.v1 {
+	//	flex-basis: 300px;
+	//}
+	// 子要素全体に対して設定し、確保できない場合はそれぞれが妥協しあって均等に横幅を取る
+	flex-basis: 300px;
+
+	/* 
+	flex-basisプロパティを子要素全体に設定し、その中でも特定の子要素に対して
+	必ず確保してほしい場合は、"flex-shrink: 0;" を指定する
+	*/
+	&.v1 {
+		flex-shrink: 0;
+	}	
+}
