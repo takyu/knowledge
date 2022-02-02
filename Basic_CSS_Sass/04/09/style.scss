@@ -1,0 +1,70 @@
+$cTeal: teal;
+$cWhite: white;
+
+@import 'mixin';
+
+// googleフォントをCSSで読み込む
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+
+// html全体に振ることもできる
+html {
+	font-family: 'Fjalla One', sans-serif;
+}
+
+body {
+	// ブラウザのマージンをゼロに
+	margin: 0;
+}
+
+#container {
+	position: relative;
+	height: 100vh;
+	background-color: $cTeal;
+}
+
+.animate-title {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: $cWhite;
+	opacity: 0;
+	font-size: 3em;
+	font-family: 'Fjalla One', sans-serif;
+
+	&.inview {
+
+		opacity: 1;
+		.char {
+
+			// tranformを適用させることができるのは、ブロック要素なので変更 (.charはspanゆえにインライン要素)
+			display: inline-block;
+
+			@include animation(
+				$name: kf-animate-characters,
+				$duration: 0.5s,
+				$timing-function: cubic-bezier(0.39, 1.57, 0.58, 1),
+				$fill-mode: both
+			);
+
+			@for $i from 1 through 9 {
+				&:nth-child(#{$i}) {
+					animation-delay: $i * 0.04s;
+				}
+			}
+
+		}
+	}
+}
+
+@keyframes kf-animate-characters {
+	0% {
+		opacity: 0;
+		transform: translateY(-50%);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
