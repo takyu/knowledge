@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteBase /Basic_apache/13/images
+
+# Content-Typeの追加
+AddType images/webp .webp
+RewriteCond %{HTTP_ACCEPT} image/webp
+# webpがあるかどうか
+RewriteCond /Users/[Username]/Develope/knowledge/Basic_apache/13/images/$1.webp -f
+# 置換
+RewriteRule /?images/(.+)\.(jpe?g|png) $1.webp
+
