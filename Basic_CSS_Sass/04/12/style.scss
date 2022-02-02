@@ -1,0 +1,104 @@
+@import 'mixin';
+
+img {
+	// 親要素の横幅に一致
+	max-width: 100%;
+
+	// image要素に対して上下の余白を消す際に使用
+	vertical-align: bottom;
+}
+
+.cover-slide {
+	position: relative;
+
+	// scale(1.5)でカバースライドした時点で拡大される部分を非表示にする
+	overflow: hidden;
+
+	&::after {
+
+		// 擬似要素には必ずcontentが必須
+		content: '';
+		
+		// 画像の上に背景を設定できるようにするため
+		position: absolute; /* 親要素にposition: relativeするのを忘れないように */
+		z-index: 2;
+
+		/* 
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		と同じ。
+		*/
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #eaebe6;
+
+	}
+	
+	&.inview {
+		&::after {
+			@include animation (
+				$name: kf-cover-slide,
+				$duration: 2s,
+				$timing-function: ease-in-out,
+				$fill-mode: forwards
+			)
+		}
+	}
+}
+
+@keyframes kf-cover-slide {
+	0% {
+		left: 0;
+		right: 100%;
+	}
+	50% {
+		left: 0;
+		right: 0;
+	}
+	100% {
+		left: 100%;
+		right: 0;
+	}
+}
+
+.img-zoom {
+	opacity: 0;
+
+	/* 
+	.inview {
+		& .img-zoom {
+	と同義
+	inviewが付与されたタイミングで表示する
+	違うブロックをまた書かないといけないのでそれをやることなく書けるやり方
+	*/
+	.inview & {
+		opacity: 1;
+		@include animation(
+			$name: kf-img-show,
+			$duration: 2s,
+			$timing-function: ease-in-out,
+			$fill-mode: none
+		)
+	}
+}
+
+@keyframes kf-img-show {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0;
+	}
+	// 50%が終わった時点でいきなり現れるようにする
+	50.1% {
+		opacity: 1;
+		transform: scale(1.5);
+	}
+	100% {
+		opacity: 1;
+	}
+}
