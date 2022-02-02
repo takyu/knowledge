@@ -1,0 +1,139 @@
+@import 'mixin';
+
+img {
+	max-width: 100%;
+	vertical-align: bottom;
+}
+
+.cover-slide {
+	position: relative;
+	overflow: hidden;
+
+	&::after {
+		content: '';
+		position: absolute;
+		z-index: 2;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #eaebe6;
+
+	}
+	
+	&.inview {
+		&::after {
+			@include animation (
+				$name: kf-cover-slide,
+				$duration: 2s,
+				$timing-function: ease-in-out,
+				$fill-mode: forwards
+			)
+		}
+	}
+}
+
+@keyframes kf-cover-slide {
+	0% {
+		left: 0;
+		right: 100%;
+	}
+	50% {
+		left: 0;
+		right: 0;
+	}
+	100% {
+		left: 100%;
+		right: 0;
+	}
+}
+
+.img-zoom {
+	opacity: 0;
+
+	.inview & {
+		opacity: 1;
+		@include animation(
+			$name: kf-img-show,
+			$duration: 2s,
+			$timing-function: ease-in-out,
+			$fill-mode: none
+		);
+		transition: 0.3s ease;
+		&:hover {
+			transform: scale(1.3)
+		}
+	}
+}
+
+@keyframes kf-img-show {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0;
+	}
+	50.1% {
+		opacity: 1;
+		transform: scale(1.5);
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.hover-darken {
+	&::before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		z-index: 1;
+		transition: background-color 0.3s ease;
+		pointer-events: none;
+		@include animation(
+			$name: kf-img-show,
+			$duration: 2s,
+			$timing-function: ease-in-out,
+			$fill-mode: none
+		);
+	}
+	&:hover::before {
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+}
+
+.div-img-zoom {
+	background-image: url(images/Pikachu.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	width: 100%;
+	//height: 200px;
+	@extend .img-zoom;
+
+	/* 
+	上でコメントアウトした通り、divを使って縦幅をアスペクト比を保ちながら
+	表示するのは困難
+	-> 以下の設定をすると縦幅のアスペクト比も保てる
+	親要素の横幅に対して50%の縦幅となるため、縦横比を常に一定にできる
+
+	CSSプロパティは使い回しが楽なようにクラス名にあった役割を切り分けてあげる
+	-> 以下の設定は.img-50として切り分けてあげる
+	*/
+	//&::before {
+	//	content: '';
+	//	display: block;
+	//	padding-top: 50%;
+	//}
+}
+
+.img-bg50 {
+	&::before {
+		content: '';
+		display: block;
+		padding-top: 50%;
+	}
+}
