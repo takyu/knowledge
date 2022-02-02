@@ -1,0 +1,11 @@
+import { effect, reactive } from "./reactivity.esm-browser.js";
+
+const obj = reactive({
+	a: 0
+});
+
+effect(() => {
+	console.log(obj.a);
+});
+
+obj.a = 1;
