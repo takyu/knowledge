@@ -1,0 +1,2 @@
+# 04のディレクトリに飛ばす
+Redirect 301 "/Basic_apache/05/" "/Basic_apache/04"
