@@ -1,0 +1,70 @@
+$cBlack: black;
+
+body {
+	text-align: center;
+}
+
+.rect {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	background-color: $cBlack;
+	animation: sk-bouncedelay 1.4s;
+	animation-timing-function: ease;
+	//animation-delay: 3s;
+
+	// 停止するまでにアニメーションする回数
+	//animation-iteration-count: 3;
+	
+	// 停止するまでにアニメーションする回数
+	animation-iteration-count: infinite;
+
+	// 100% -> 0%
+	//animation-direction: reverse;
+
+	// 0% -> 100%, 100% -> 0%, ...
+	animation-direction: alternate;
+
+	// 100% -> 0%, 0% -> 100% ...
+	//animation-direction: alternate-reverse;
+
+	// 終了時点でアニメーションを適用させる
+	//animation-fill-mode: forwards;
+
+	// 開始、終了時点どちらもアニメーションを適用させる
+	//animation-fill-mode: both;
+}
+
+.paused {
+	// アニメーションを途中で止める
+	animation-play-state: paused;
+}
+
+@keyframes sk-bouncedelay {
+	0% {
+		transform: scale(0)
+	}
+	// 途中の様子を表せる
+	50% {
+		transform: scale(2);
+	}
+
+	// 複数記述も可能
+	0%, 50% {
+		transform: scale(2);
+	}
+
+	100% {
+		transform: scale(1)
+	}
+}
+
+@keyframes sk-bouncedelay {
+	from {
+		transform: scale(0)
+	}
+
+	to {
+		transform: scale(1)
+	}
+}
