@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "gsap": "^3.8.0",
+    "intersection-observer": "^0.12.0",
+    "pace-js": "^1.2.4",
+    "swiper": "^7.3.1"
+  },
+  "devDependencies": {
+    "modernizr": "^3.11.8"
+  }
+}
