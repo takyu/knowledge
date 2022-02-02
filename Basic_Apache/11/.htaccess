@@ -1,0 +1,28 @@
+#Options -Indexes
+
+RewriteEngine On
+
+RewriteBase /Basic_apache/11/rewrite-test/
+
+# 末尾に&?をつけることで、複数のクエリがついてる場合に対応（無ければないで一致）
+RewriteCond %{QUERY_STRING} p=(.+)&?
+
+# 末尾に?をつけることで、一回マッチしたクエリ部分を削除する
+RewriteRule rewrite-test/sub1 sub1/%1?
+
+# RewriteCondでよく使う表現
+
+# ファイルが存在するか -> RewriteCond %{REQUEST_FILENAME} -f
+# ファイルが存在しない時、置換(!をつけると反意)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule rewrite-test/sub2/(.+) sub1/$1
+
+# ディレクトリが存在するか -> RewriteCond %{REQUEST_FILENAME} -d
+# ディレクトリが存在しない時、置換(!をつけると反意)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule rewrite-test/sub2/(.+) sub1/$1
+
+# 下の二つをand条件で繋ぐことをよくする -> その場合はつなげて下に書く
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule rewrite-test/sub2/(.+) sub1/$1
