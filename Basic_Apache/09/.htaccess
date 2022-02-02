@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteBase /Basic_apache/09/rewrite-test/
+# sub1内のhtmlファイルに対して、sub2の名前が一緒のhtmlファイルに置換
+# sub1/file1.html -> sub2/file2.html
+RewriteRule rewrite-test/sub1/(.+\.html) sub2/$1
+
+# images/cat.jpg -> images/cat.png
+RewriteRule rewrite-test/images/(\w{3}).jpg images/$1.png
