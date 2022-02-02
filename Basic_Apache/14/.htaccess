@@ -1,0 +1,21 @@
+RewriteEngine On
+
+RewriteBase /Basic_apache/14/
+
+#　www.dev.localに来たドメインをdev.localに飛ばす
+# NCは大文字であっても小文字であってもマッチするように設定するオプション
+RewriteCond %{HTTP_HOST} ^www\.dev\.local [NC]
+
+# パスの部分をグループ化して切り分ける方法もある
+#RewriteRule (.+) http://dev.local:8888/$1 [R=301]
+RewriteRule .? http://dev.local:8888%{REQUEST_URI} [R=301]
+
+# 書き換えた後のパスが更にrewriteruleにマッチングしてしまう
+# ->同じドメイン(ホスト)に送っているため
+#RewriteCond %{HTTP_HOST} ^vhost\.dev\.local [NC]
+#RewriteRule (.*) vhost/$1
+
+# 2回目以降に二行目のvhostになっていないところは満たされないので、置換は無視される
+RewriteCond %{HTTP_HOST} ^vhost\.dev\.local [NC]
+RewriteCond %{REQUEST_URI} !^/Basic_apache/14/vhost  
+RewriteRule (.*) vhost/$1
