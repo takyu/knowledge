@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div id='app'></div>
+	<script type='module'>
+		import { createApp, h } from './app.js'
+
+		createApp({
+
+			// アロー関数の一種の書き方で、オブジェクトを戻り値として返したい場合は、()で囲む
+			data: () => ({
+
+				// 関数でオブジェクトを返している理由は、実行されるたびに新しいオブジェクトを返したいため(動的)
+				a: 1,
+				b: 2
+			}),
+			render() {
+				return h('div', { class: 'container' }, [
+					h('div', { class: 'num' }, [
+						h('button', { class: 'btn' }, '+'),
+						h('div', { class: 'label' }, this.data.a),
+						h('button', { class: 'btn' }, '-'),
+					]),
+					h('div', { class: 'num' }, '+'),
+					h('div', { class: 'num' }, [
+						h('button', { class: 'btn' }, '+'),
+						h('div', { class: 'label' }, this.data.b),
+						h('button', { class: 'btn' }, '-'),
+					]),
+					h('div', { class: 'num' }, '='),
+					h('div', { class: 'result' }, 3)
+				]);
+			}
+		}).mount('#app');
+	</script>
+
+	<link rel='stylesheet' href="style.css">
+</body>
+
+</html>
