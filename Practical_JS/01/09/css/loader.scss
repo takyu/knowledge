@@ -1,0 +1,107 @@
+@import 'mixin';
+
+$cAqua: rgb(0, 155, 255);
+$cSubTitle: #535353;
+
+/*
+このやり方だと、ロード時に残存が写ってしまう。
+-> 最初がopacity0の方向に書き換え
+// 1sかけてopacityを1に
+#global-container {
+	transition: opacity 1s;
+
+}
+// loadしている最中の動作
+.pace-running {
+	// 中身の画像は透明に
+	#global-container {
+		opacity: 0;
+	}
+}
+*/
+#global-container {
+	opacity: 0;
+	transition: opacity 1s;
+
+	.pace-done & {
+		opacity: 1;
+	}
+}
+
+
+.pace {
+	z-index: 2000;
+
+	/* 
+	positionが「fixed」or 「absolute」かつ
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	-> 上下中央揃え、真ん中に要素が配置される。
+	*/
+	position: fixed;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+
+	width: 100px;
+	height: 100px;
+}
+
+.pace .pace-progress {
+
+	// %の文字列を一定の場所で固定して表示
+	transform: none !important;
+
+	text-align: center;
+
+	&::after {
+		content: attr(data-progress-text);
+		display: block;
+		font-weight: 100;
+		font-size: 2em;
+	
+		// font-stack
+		font-family: 'Helvetica Neue', 'Yu Gothic', 'Meiryo', sans-serif;
+	
+		color: $cSubTitle;
+	}
+}
+
+.pace.pace-inactive {
+	display: none;
+}
+
+.pace-progress-inner {
+	width: 40px;
+	height: 40px;
+	background-color: $cAqua;
+	margin: 0 auto;
+	margin-bottom: 10px;
+
+	@include animation (
+		$name: sk-rotateplane,
+		$duration: 1.2s,
+		$iteration-count: infinite,
+		$timing-function: ease-in-out,
+		$fill-mode: forwards
+	)
+
+}
+
+@keyframes sk-rotateplane {
+
+	0% {
+		transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+	}
+	50% {
+		transform: perspective(120px) rotateX(-180deg) rotateY(0deg);
+	}
+	100% {
+		transform: perspective(120px) rotateX(-180deg) rotateY(-180deg);
+	}
+
+}
