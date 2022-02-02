@@ -11,66 +11,66 @@ CSS stands for Cascading Style Sheets and is a language of style rules that we u
 
 3. [Transition](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03)
 
-	1. [Typical CSS Property](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/01)
+	1. Typical CSS Property
 
-	2. [Hover action Property](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/02)
+	2. Hover action Property
 
-	3. [Basic of Sass](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/03)
+	3. Basic of Sass
 
-	4. [CSS Selector and Sass Nesting](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/04)
+	4. CSS Selector and Sass Nesting
 
-	5. [Shadowed on hover](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/05)
+	5. Shadowed on hover
 
-	6. [Various effects buttons](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/06)
+	6. Various effects buttons
 
-	7. [Transform Property](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/07)
+	7. Transform Property
 
-	8. [Position and Z-index Property](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/08)
+	8. Position and Z-index Property
 
-	9. [Button with sliding background color](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/09)
+	9. Button with sliding background color
 
-	10. [Pseudo-elements (refactoring 9.)](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/10)
+	10. Pseudo-elements (refactoring 9.)
 
-	11. [a.k.a easing-function](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/11)
+	11. a.k.a easing-function
 
-	12. [transform-style (3D animation)](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/12)
+	12. transform-style (3D animation)
 
-	13. [Cubic Botton (3D animation)](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/13)
+	13. Cubic Botton (3D animation)
 
-	14. [Horizontal layout and Vertical layout](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/14)
+	14. Horizontal layout and Vertical layout
 
-	15. [About node-sass](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/03/15)
+	15. About node-sass
 
 4. [Animation](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04)
 
-	1. [Loader with animation](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/01)
+	1. Loader with animation
 
-	2. [Animation and Keyframes](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/02)
+	2. Animation and Keyframes
 
-	3. [@mixin](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/03)
+	3. @mixin
 
-	4. [Pseudo-classes](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/04)
+	4. Pseudo-classes
 
-	5. [@for and interpolation](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/05)
+	5. @for and interpolation
 
-	6. [practice (make a variety of loaders)](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/06)
+	6. practice (make a variety of loaders)
 
-	7. [Model of loading spinners](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/07)
+	7. Model of loading spinners
 
-	8. [Hamburger Menu (button)](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/08)
+	8. Hamburger Menu (button)
 
-	9. [Animating strings (Google Fonts)](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/09)
+	9. Animating strings (Google Fonts)
 
-	10. [@Each and Maps and Fadein Animation](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/10)
+	10. @Each and Maps and Fadein Animation
 
-	11. [How to display images](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/11)
+	11. How to display images
 
-	12. [Cover slide animation on image](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/12)
+	12. Cover slide animation on image
 
-	13. [Hover animation on image](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/13)
+	13. Hover animation on image
 
-	14. [Display Background-image like \<img> tag](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/14)
+	14. Display Background-image like \<img> tag
 
-	15. [@media and Viewport concepts](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/15)
+	15. @media and Viewport concepts
 
-	16. [Rendering (use transform, opacity)](https://github.com/takyu/knowledge/tree/main/Basic_CSS_Sass/04/16)
+	16. Rendering (use transform, opacity)
