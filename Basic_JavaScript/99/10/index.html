@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div id='app'></div>
+
+	<script type='module'>
+		// インポートファイル
+		import { createVnode, patch } from './renderer.js';
+		import { nodeOps } from './nodeOps.js';
+
+		const container = nodeOps.qs('#app');
+
+		const prevVNode = createVnode();
+		const nextVNode = createVnode('div', {
+			class: 'green',
+			onclick: () => {
+				console.log('hello');
+			}}, 'hello');
+
+		patch(prevVNode, nextVNode, container);
+	</script>
+
+	<link rel='stylesheet' href='style.css'>
+</body>
+</html>
