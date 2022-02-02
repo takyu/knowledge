@@ -1,0 +1,76 @@
+//#container {
+//	text-align: center;
+//}
+
+.rect {
+	width: 100px;
+	height: 100px;
+
+	/*
+	divを中央に配置 (block要素)
+	「margin: 0 auto」 で中央寄せする場合は、必ずwidthが設定されてなければならない
+	*/
+	margin: 0 auto;
+
+	background-color: orangered;
+
+	/*
+	要素を動かす。
+	transform: tranlate(Xoffset, Yoffset)
+	「px」と「%」指定
+	「%」は100%でその要素一つ分を動かす。
+	*/
+	//transform: translate(50px, 50px);
+
+	// X軸方向だけに動かす場合
+	//transform: translateX(50px);
+	// Y軸方向だけに動かす場合
+	//transform: translateY(100%);
+
+	/*
+	要素を回転させる。
+	「deg」(degreeを表す)指定
+	+の値で時計回りに、-の値で反時計回りに回転する。
+	*/
+	//transform: rotate(30deg);
+	//transform: rotate(-30deg);
+
+	/*
+	要素を傾斜変形させる。
+	「deg」指定
+	*/
+	//transform: skew(-30deg, -30deg);
+
+	// X軸方向にだけ傾斜させる場合
+	//transform: skewX(-30deg);
+	// Y軸方向にだけ傾斜させる場合
+	//transform: skewY(-30deg);
+
+	/*
+	要素を拡大、または、縮小表示させる。
+	数値指定
+	*/
+	//transform: scale(3, 2);
+
+	// X軸方向にだけ拡大、または縮小させる場合
+	//transform: scale(3);
+	// Y軸方向にだけ拡大、または縮小させる場合
+	//transform: scale(2);
+
+	//transformを複数個指定したい場合は、半角スペースを開けて羅列する。
+	transform: translateX(50px) scaleY(2);
+	
+	/*
+	「transform」と合わせて使うと、回転の中心点を指定することができる。
+	「点」と「px」指定
+	基準となる点は、「top」「bottom」「center」「right」「left」の中から、
+	二つを組み合わせて使う。
+	「px」は要素の一番左上の点を基準として、「x軸方向」「y軸方向」移動した点が基準点
+	となる。
+	*/
+	//transform-origin: top left;
+	//transform-origin: bottom right;
+	transform-origin: center center;
+	//transform-origin: -20px -20px;
+
+}
