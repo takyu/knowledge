@@ -1,0 +1,66 @@
+$cWhite: white;
+$cBlack: Black;
+
+#container {
+	text-align: center;
+}
+
+.btn {
+	position: relative;
+	display: inline-block;
+	transform-style: preserve-3d;
+	perspective: 500px;
+	width: 150px;
+	height: 50px;
+	margin: 0 auto;
+	cursor: pointer;
+
+	&.cubic {
+
+		span {
+			// 二つのスパンは同じ場所に重なった状態で表示
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+
+			border: 1px solid $cBlack;
+
+			/* 
+			行ボックスの高さを設定
+			一行の設定にのみ使用する、上下中央揃え
+			真ん中にする -> height - border * 2
+			*/
+			line-height: 48px;
+
+			text-align: center;
+			transition: all 0.5s;
+
+		}
+		
+		.hovering {
+			background-color: $cBlack;
+			color: $cWhite;
+			transform: rotateX(90deg);
+			transform-origin: center center -25px;
+		}
+		
+		.default {
+			background-color: $cWhite;
+			color: $cBlack;
+			transform: rotateX(0);
+			transform-origin: center center -25px;
+			//opacity: 0;
+		}
+
+		&:hover {
+			.hovering {
+				transform: rotateX(0);
+			}
+			.default {
+				transform: rotateX(-90deg);
+			}
+		}
+	}
+}

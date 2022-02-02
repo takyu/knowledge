@@ -1,0 +1,63 @@
+@charset "UTF-8";
+#container {
+  text-align: center;
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-perspective: 500px;
+          perspective: 500px;
+  width: 150px;
+  height: 50px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.btn.cubic span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid Black;
+  /* 
+			行ボックスの高さを設定
+			一行の設定にのみ使用する、上下中央揃え
+			真ん中にする -> height - border * 2
+			*/
+  line-height: 48px;
+  text-align: center;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.btn.cubic .hovering {
+  background-color: Black;
+  color: white;
+  -webkit-transform: rotateX(90deg);
+          transform: rotateX(90deg);
+  -webkit-transform-origin: center center -25px;
+          transform-origin: center center -25px;
+}
+
+.btn.cubic .default {
+  background-color: white;
+  color: Black;
+  -webkit-transform: rotateX(0);
+          transform: rotateX(0);
+  -webkit-transform-origin: center center -25px;
+          transform-origin: center center -25px;
+}
+
+.btn.cubic:hover .hovering {
+  -webkit-transform: rotateX(0);
+          transform: rotateX(0);
+}
+
+.btn.cubic:hover .default {
+  -webkit-transform: rotateX(-90deg);
+          transform: rotateX(-90deg);
+}
