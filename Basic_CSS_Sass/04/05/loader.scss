@@ -1,0 +1,58 @@
+$cBlack: black;
+
+.three-dot-spinner {
+	text-align: center;
+
+	div {
+		display: inline-block;
+		width: 18px;
+		height: 18px;
+		background-color: $cBlack;
+		border-radius: 50%;
+		animation: sk-bouncedelay 1.4s infinite;
+		
+		/* 
+		&:nth-child(1) {
+			animation-delay: -0.32s;
+		}
+		&:nth-child(2) {
+			animation-delay: -0.16s;
+		}
+		*/
+		@for $i from 1 through 2 /* to: 未満、through: 以下 */ {
+
+			// セレクターの場所で変数を使用したい場合は、#{}で囲む (interpolation)
+			&:nth-child(#{$i}) {
+
+				// 計算式は単位を含めて計算ができる
+				animation-delay: -0.32s / $i;
+
+				// 文字列の中で使いたい場合はinterpolation
+				//background-image: url('images/image#{$i}.png');
+			}
+		}
+
+	}
+}
+
+@keyframes sk-bouncedelay {
+
+	0% {
+		//opacity: 0;
+		transform: scale(0);
+	}
+
+	40% {
+		transform: scale(1);
+	}
+
+	80% {
+		transform: scale(0);
+	}
+
+	100% {
+		//opacity: 1;
+		transform: scale(0);
+	}
+
+}
