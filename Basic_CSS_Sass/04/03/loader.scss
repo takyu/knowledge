@@ -1,0 +1,58 @@
+$cBlack: black;
+$cGreen: green;
+
+body {
+	text-align: center;
+}
+
+@mixin animation(
+	$name,
+
+	// デフォルト引数
+	$duration: 1s,
+	$timing-function: ease,
+	$delay: 0s,
+	$iteration-count: 1,
+	$direction: normal,
+	$fill-mode: none
+) {
+	//animation-name: $name;
+	//animation-duration: $duration;
+
+	// 一々animationと書かなくても良い方法
+	animation: {
+		name: $name;
+		duration: $duration;
+		timing-function: $timing-function;
+		delay: $delay;
+		iteration-count: $iteration-count;
+		direction: $direction;
+		fill-mode: $fill-mode;
+	}
+}
+
+.rect {
+	display: inline-block;
+	width: 100px;
+	height: 100px;
+	background-color: $cBlack;
+	@include animation(
+		$name: sk-bouncedelay,
+		$fill-mode: forward
+	);
+}
+
+.paused {
+	animation-play-state: paused;
+}
+
+@keyframes sk-bouncedelay {
+	from {
+		transform: scale(0);
+		background-color: $cBlack;
+	}
+	to {
+		transform: scale(1);
+		background-color: $cGreen;
+	}
+}
