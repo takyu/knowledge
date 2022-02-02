@@ -1,0 +1,86 @@
+$cWhite: white;
+$cBlack: black;
+
+#container {
+	text-align: center;
+}
+
+.btn {
+	background-color: $cWhite;
+	color: $cBlack;
+	border: 1px solid $cBlack;
+	padding: 10px 40px;
+	margin: 50px 0;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.5s;
+
+	&.cover-3d {
+		position: relative;
+		//overflow: hidden;
+		//z-index: 1;
+
+		/*
+		3Dを入れたい子要素の親要素に入れる
+		今回は、spanタグに3Dを入れたいので、buttonタグに入れる
+		*/
+		transform-style: preserve-3d;
+		/*
+		奥行き
+		大体、300px (近い) ~1000px(遠い) で設定する
+		*/
+		perspective: 100px;
+		/*
+		視点をどこに置くかを設定する
+		何も指定がなければ、デフォルト値で, 50% 50% (真正面)
+		perspective-origin: X軸 Y軸
+		*/
+		perspective-origin: 50% 50%;
+		// 左側面
+		//perspective-origin: -100% 50%;
+
+		background-color: transparent;
+
+		/* 
+		要素の重なりがない場合は、z-indexが無視される
+		-> 3Dアニメーションが実行されている際は、z-indexが作用しない
+		3Dアニメーション時に、3D空間の重なり順(元の要素の画面が前方か、後方か)
+		を定義するときは、"transform: translateZ()"を用いる
+		*/
+		span {
+			display: inline-block;
+			transform: translateZ(10px);
+		}
+
+		&::before {
+			content: '';
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+			background-color: $cBlack;
+			position: absolute;
+			top: 0;
+			left: 0;
+			transition: all 0.5s;
+			//z-index: -1;
+			
+			// 何軸回転するかを設定
+			transform: rotateX(-90deg);
+			//transform: rotateX(90deg);
+			// 回転軸の場所を設定
+			transform-origin: top center;
+			// 見えている部分を排除
+			opacity: 0;
+		}
+
+		&:hover {
+			color: $cWhite;
+
+			&::before {
+				transform: none;
+				opacity: 1;
+			}
+
+		}
+	}
+}

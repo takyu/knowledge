@@ -1,0 +1,80 @@
+@charset "UTF-8";
+#container {
+  text-align: center;
+}
+
+.btn {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  padding: 10px 40px;
+  margin: 50px 0;
+  font-weight: 500;
+  cursor: pointer;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.btn.cover-3d {
+  position: relative;
+  /*
+		3Dを入れたい子要素の親要素に入れる
+		今回は、spanタグに3Dを入れたいので、buttonタグに入れる
+		*/
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  /*
+		奥行き
+		大体、300px (近い) ~1000px(遠い) で設定する
+		*/
+  -webkit-perspective: 100px;
+          perspective: 100px;
+  /*
+		視点をどこに置くかを設定する
+		何も指定がなければ、デフォルト値で, 50% 50% (真正面)
+		perspective-origin: X軸 Y軸
+		*/
+  -webkit-perspective-origin: 50% 50%;
+          perspective-origin: 50% 50%;
+  background-color: transparent;
+  /* 
+		要素の重なりがない場合は、z-indexが無視される
+		-> 3Dアニメーションが実行されている際は、z-indexが作用しない
+		3Dアニメーション時に、3D空間の重なり順(元の要素の画面が前方か、後方か)
+		を定義するときは、"transform: translateZ()"を用いる
+		*/
+}
+
+.btn.cover-3d span {
+  display: inline-block;
+  -webkit-transform: translateZ(10px);
+          transform: translateZ(10px);
+}
+
+.btn.cover-3d::before {
+  content: '';
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  -webkit-transform: rotateX(-90deg);
+          transform: rotateX(-90deg);
+  -webkit-transform-origin: top center;
+          transform-origin: top center;
+  opacity: 0;
+}
+
+.btn.cover-3d:hover {
+  color: white;
+}
+
+.btn.cover-3d:hover::before {
+  -webkit-transform: none;
+          transform: none;
+  opacity: 1;
+}
