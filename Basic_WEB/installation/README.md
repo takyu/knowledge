@@ -106,43 +106,43 @@ This section describes how to install and configure Apache, PHP, and MySQL for M
 
 	In the console results,
 
-		```
-		php: stable 8.1.2 (bottled), HEAD
-		General-purpose scripting language
-		https://www.php.net/
-		/usr/local/Cellar/php/8.1.2 (514 files, 80.4MB) *
-		Poured from bottle on 2022-01-22 at 19:22:41
-		From: https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/php.rb
-		License: PHP-3.01
-		==> Dependencies
-		Build: httpd ✔, pkg-config ✔
-		Required: apr ✔, apr-util ✔, argon2 ✔, aspell ✔, autoconf ✔, curl ✔, freetds ✔, gd ✔, gettext ✔, gmp ✔, icu4c ✔, krb5 ✔, libpq ✔, libsodium ✔, libzip ✔, oniguruma ✔, openldap ✔, openssl@1.1 ✔, pcre2 ✔, sqlite ✔, tidy-html5 ✔, unixodbc ✔
-		==> Options
-		--HEAD
-			Install HEAD version
-		==> Caveats
-		To enable PHP in Apache add the following to httpd.conf and restart Apache:
-			LoadModule php_module /usr/local/opt/php/lib/httpd/modules/libphp.so
+	```
+	php: stable 8.1.2 (bottled), HEAD
+	General-purpose scripting language
+	https://www.php.net/
+	/usr/local/Cellar/php/8.1.2 (514 files, 80.4MB) *
+	Poured from bottle on 2022-01-22 at 19:22:41
+	From: https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/php.rb
+	License: PHP-3.01
+	==> Dependencies
+	Build: httpd ✔, pkg-config ✔
+	Required: apr ✔, apr-util ✔, argon2 ✔, aspell ✔, autoconf ✔, curl ✔, freetds ✔, gd ✔, gettext ✔, gmp ✔, icu4c ✔, krb5 ✔, libpq ✔, libsodium ✔, libzip ✔, oniguruma ✔, openldap ✔, openssl@1.1 ✔, pcre2 ✔, sqlite ✔, tidy-html5 ✔, unixodbc ✔
+	==> Options
+	--HEAD
+		Install HEAD version
+	==> Caveats
+	To enable PHP in Apache add the following to httpd.conf and restart Apache:
+		LoadModule php_module /usr/local/opt/php/lib/httpd/modules/libphp.so
 
-			<FilesMatch \.php$>
-				SetHandler application/x-httpd-php
-			</FilesMatch>
+		<FilesMatch \.php$>
+			SetHandler application/x-httpd-php
+		</FilesMatch>
 
-		Finally, check DirectoryIndex includes index.php
-			DirectoryIndex index.php index.html
+	Finally, check DirectoryIndex includes index.php
+		DirectoryIndex index.php index.html
 
-		The php.ini and php-fpm.ini file can be found in:
-			/usr/local/etc/php/8.1/
+	The php.ini and php-fpm.ini file can be found in:
+		/usr/local/etc/php/8.1/
 
-		To restart php after an upgrade:
-		brew services restart php
-		Or, if you don't want/need a background service you can just run:
-		/usr/local/opt/php/sbin/php-fpm --nodaemonize
-		==> Analytics
-		install: 111,158 (30 days), 320,583 (90 days), 805,964 (365 days)
-		install-on-request: 89,725 (30 days), 256,382 (90 days), 727,367 (365 days)
-		build-error: 57 (30 days)
-		```
+	To restart php after an upgrade:
+	brew services restart php
+	Or, if you don't want/need a background service you can just run:
+	/usr/local/opt/php/sbin/php-fpm --nodaemonize
+	==> Analytics
+	install: 111,158 (30 days), 320,583 (90 days), 805,964 (365 days)
+	install-on-request: 89,725 (30 days), 256,382 (90 days), 727,367 (365 days)
+	build-error: 57 (30 days)
+	```
 
 	hence, add the above changes to the httpd.conf file.
 
@@ -238,18 +238,18 @@ This section describes how to install and configure Apache, PHP, and MySQL for M
 
 	On Apple M1 hardware, you might instead need to use
 
-		```sh
-		arch -x86_64 sudo pecl install xdebug
-		```
+	```sh
+	arch -x86_64 sudo pecl install xdebug
+	```
 
 	In the console results, copy the full path of the "xdebug.so" file, as the following console will be displayed at the end.
 
-		```
-		Build process completed successfully
-		Installing '/usr/local/Cellar/php/8.1.2/pecl/20210902/xdebug.so'
-		install ok: channel://pecl.php.net/xdebug-3.1.2
-		Extension xdebug enabled in php.ini
-		```
+	```
+	Build process completed successfully
+	Installing '/usr/local/Cellar/php/8.1.2/pecl/20210902/xdebug.so'
+	install ok: channel://pecl.php.net/xdebug-3.1.2
+	Extension xdebug enabled in php.ini
+	```
 
 	If you get an error and cannot install, please refer to this [site (stackoverflow)](https://stackoverflow.com/questions/65834853/error-to-install-xdebug-on-mac-os-with-php-8).
 
@@ -298,73 +298,73 @@ This section describes how to install and configure Apache, PHP, and MySQL for M
 
 	In the console results, work through the settings in that.
 
-		```
-		Securing the MySQL server deployment.
+	```
+	Securing the MySQL server deployment.
 
-		Connecting to MySQL using a blank password.
+	Connecting to MySQL using a blank password.
 
-		VALIDATE PASSWORD COMPONENT can be used to test passwords
-		and improve security. It checks the strength of password
-		and allows the users to set only those passwords which are
-		secure enough. Would you like to setup VALIDATE PASSWORD component?
+	VALIDATE PASSWORD COMPONENT can be used to test passwords
+	and improve security. It checks the strength of password
+	and allows the users to set only those passwords which are
+	secure enough. Would you like to setup VALIDATE PASSWORD component?
 
-		Press y|Y for Yes, any other key for No: y
+	Press y|Y for Yes, any other key for No: y
 
-		There are three levels of password validation policy:
+	There are three levels of password validation policy:
 
-		LOW    Length >= 8
-		MEDIUM Length >= 8, numeric, mixed case, and special characters
-		STRONG Length >= 8, numeric, mixed case, special characters and dictionary file
+	LOW    Length >= 8
+	MEDIUM Length >= 8, numeric, mixed case, and special characters
+	STRONG Length >= 8, numeric, mixed case, special characters and dictionary file
 
-		Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 2
+	Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 2
 
-		Please set the password for root here.
+	Please set the password for root here.
 
-		New password:
+	New password:
 
-		Re-enter new password:
+	Re-enter new password:
 
-		Estimated strength of the password: 100
-		Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
-		By default, a MySQL installation has an anonymous user,
-		allowing anyone to log into MySQL without having to have
-		a user account created for them. This is intended only for
-		testing, and to make the installation go a bit smoother.
-		You should remove them before moving into a production
-		environment.
+	Estimated strength of the password: 100
+	Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
+	By default, a MySQL installation has an anonymous user,
+	allowing anyone to log into MySQL without having to have
+	a user account created for them. This is intended only for
+	testing, and to make the installation go a bit smoother.
+	You should remove them before moving into a production
+	environment.
 
-		Remove anonymous users? (Press y|Y for Yes, any other key for No) : y 
-		Success.
-
-
-		Normally, root should only be allowed to connect from
-		'localhost'. This ensures that someone cannot guess at
-		the root password from the network.
-
-		Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
-		Success.
-
-		By default, MySQL comes with a database named 'test' that
-		anyone can access. This is also intended only for testing,
-		and should be removed before moving into a production
-		environment.
+	Remove anonymous users? (Press y|Y for Yes, any other key for No) : y 
+	Success.
 
 
-		Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
-		- Dropping test database...
-		Success.
+	Normally, root should only be allowed to connect from
+	'localhost'. This ensures that someone cannot guess at
+	the root password from the network.
 
-		- Removing privileges on test database...
-		Success.
+	Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
+	Success.
 
-		Reloading the privilege tables will ensure that all changes
-		made so far will take effect immediately.
+	By default, MySQL comes with a database named 'test' that
+	anyone can access. This is also intended only for testing,
+	and should be removed before moving into a production
+	environment.
 
-		Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
-		Success.
 
-		All done!
-		```
+	Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
+	- Dropping test database...
+	Success.
+
+	- Removing privileges on test database...
+	Success.
+
+	Reloading the privilege tables will ensure that all changes
+	made so far will take effect immediately.
+
+	Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
+	Success.
+
+	All done!
+	```
 
 9. Configure mysql port number
 
