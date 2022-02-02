@@ -1,0 +1,22 @@
+.parent {
+	color: blue;
+
+	//　親要素に対する子要素に適用
+	> .element {
+		color: purple;
+		
+		//　elmentの中のsecond-childと指定したい場合は、スペースを空けずに繋げて書く
+		&.second-child {
+			color: black;
+		}
+	}
+
+	// 親要素に対する子孫要素に適用 (孫も含む)
+	//.element {
+	//	color: black;
+	//}
+}
+
+.element {
+	color: red;
+}
