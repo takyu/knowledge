@@ -1,0 +1,47 @@
+$cTeal: teal;
+$cviolet: mediumvioletred;
+$cOrange: orange;
+
+html {
+	font-family: "Teko", sans-serif;
+}
+
+body {
+	margin: 0;
+}
+
+section {
+	position: relative;
+	height: 100vh;
+	background-color: $cTeal;
+
+	&:nth-child(2) {
+		background-color: $cviolet;
+	}
+
+	&:nth-child(3) {
+		background-color: $cOrange;
+	}
+}
+
+.tween-animate-title {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+	opacity: 0;
+	font-size: 2em;
+
+	&.inview {
+		opacity: 1;
+
+		& .char {
+		display: inline-block;
+		}
+	}
+
+	& .char {
+	opacity: 0;
+	}
+}
