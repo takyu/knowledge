@@ -1,0 +1,30 @@
+#container {
+	text-align: center;
+}
+
+.btn {
+	background-color: white;
+	color: black;
+	border: 1px solid black;
+	padding: 10px 40px;
+	margin: 50px 0;
+	font-weight: 600;
+	cursor: pointer;
+
+	/*
+	状態が変わった時に指定した秒数で徐々に移り変わる、移り変わりの定義
+	transition: 移り変らせたい部分 何秒かけて 移り変わりの緩急 何秒後に移り変わりを開始するか
+	*/
+	transition: all 0.3s ease 0.8s;
+	/* 
+	別々に設定したい時は、「,」で区切る
+	*/
+	/*transition: color 1s ease 2s,
+				background-color 2s ease 3s;*/
+}
+
+/* ホバーしたとき */
+.btn:hover {
+	background-color: black;
+	color: aqua;
+}
