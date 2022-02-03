@@ -1,0 +1,8 @@
+# directory
+practice/
+.vscode/
+.phpdoc/
+
+# file
+phpinfo.php
+phpDocumentor.phar
