@@ -1,0 +1,3 @@
+Hello, Taro.
+Bye, Taro.
+Good night, Taro.
