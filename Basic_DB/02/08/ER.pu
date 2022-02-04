@@ -1,0 +1,31 @@
+@startuml Basic_DB/02/08
+
+hide circle
+
+entity prefs {
+	* id int(2) unsigned NOT NULL
+	--
+	* name varchar(10) NOT NULL
+}
+
+entity products {
+	* id int(10) unsigned NOT NULL
+	--
+	* name varchar(10) NOT NULL
+}
+
+entity shops {
+	* id int(10) unsigned NOT NULL
+	--
+	* name varchar(20) NOT NULL
+	* pref_id int(2) unsigned NOT NULL
+}
+
+entity stocks {
+	* product_id int(10) unsigned NOT NULL
+	* shop_id int(10) unsigned NOT NULL
+	--
+	* amount int(10) unsigned NOT NULL
+}
+
+@enduml
