@@ -8,45 +8,45 @@ For example, **mod_auth_basic** can be used for basic authentication, **mod_dir*
 
 ## Detail
 
-1. Alias Directive
+1. [Alias Directive](https://github.com/takyu/knowledge/tree/main/Basic_Apache/01)
 
-2. Directory, Location Directive
+2. [Directory, Location Directive](https://github.com/takyu/knowledge/tree/main/Basic_Apache/02)
 
-3. .htaccess file
+3. [.htaccess file](https://github.com/takyu/knowledge/tree/main/Basic_Apache/03)
 
-4. REDIRECT
+4. [REDIRECT](https://github.com/takyu/knowledge/tree/main/Basic_Apache/04)
 
-5. Difference between 301 and 302
+5. [Difference between 301 and 302](https://github.com/takyu/knowledge/tree/main/Basic_Apache/05)
 
-6. LOG Directivies
+6. [LOG Directivies](https://github.com/takyu/knowledge/tree/main/Basic_Apache/06)
 
-7. RewriteRule Directive
+7. [RewriteRule Directive](https://github.com/takyu/knowledge/tree/main/Basic_Apache/07)
 
-8. Confirm RewriteLog and check version
+8. [Confirm RewriteLog and check version](https://github.com/takyu/knowledge/tree/main/Basic_Apache/08)
 
-9. Back-references of RewriteRule Directive
+9. [Back-references of RewriteRule Directive](https://github.com/takyu/knowledge/tree/main/Basic_Apache/09)
 
-10. RewriteCond Directive
+10. [RewriteCond Directive](https://github.com/takyu/knowledge/tree/main/Basic_Apache/10)
 
-11. RewriteCond Directive (query parameter and file attribute)
+11. [RewriteCond Directive (query parameter and file attribute)](https://github.com/takyu/knowledge/tree/main/Basic_Apache/11)
 
-12. Rewrite practice
+12. [Rewrite practice](https://github.com/takyu/knowledge/tree/main/Basic_Apache/12)
 
-13. Webp
+13. [Webp](https://github.com/takyu/knowledge/tree/main/Basic_Apache/13)
 
-14. Subdomain
+14. [Subdomain](https://github.com/takyu/knowledge/tree/main/Basic_Apache/14)
 
-15. gzip
+15. [gzip](https://github.com/takyu/knowledge/tree/main/Basic_Apache/15)
 
-16. Caching in the browser
+16. [Caching in the browser](https://github.com/takyu/knowledge/tree/main/Basic_Apache/16)
 
-17. FileETag Directive
+17. [FileETag Directive](https://github.com/takyu/knowledge/tree/main/Basic_Apache/17)
 
-18. Expires Directive
+18. [Expires Directive](https://github.com/takyu/knowledge/tree/main/Basic_Apache/18)
 
-19. Practical use of cache
+19. [Practical use of cache](https://github.com/takyu/knowledge/tree/main/Basic_Apache/19)
 
-20. HTTP/1.1 and KeepAlive
+20. [HTTP/1.1 and KeepAlive](https://github.com/takyu/knowledge/tree/main/Basic_Apache/20)
 
 ## How to configure apache
 
