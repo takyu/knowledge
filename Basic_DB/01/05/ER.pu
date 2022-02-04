@@ -1,0 +1,66 @@
+@startuml Basic_DB/01/05
+
+' hide the mark of entity
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "inventory" as e1 {
+	* product_ID (FK)
+	* store_ID (FK)
+	--
+	* amount
+}
+entity "product" as e2{
+	* product_ID
+	--
+	* product_name
+}
+entity "store" as e3 {
+	* store_ID
+	--
+	* store_name
+	* prefecture_ID (FK)
+}
+entity "prefecture" as e4 {
+	* prefecture_ID
+	--
+	* prefecture_name
+}
+
+e1 }o--|| e2
+e1 }o--|| e3
+e1 }o--|| e4
+
+' It is also possible to set the entity and the cardinality without using an alias.
+/' 
+entity inventory {
+	* product_ID (FK)
+	* store_ID (FK)
+	--
+	* amount
+}
+entity product{
+	* product_ID
+	--
+	* product_name
+}
+entity store{
+	* store_ID
+	--
+	* store_name
+	* prefecture_ID (FK)
+}
+entity prefecture{
+	* prefecture_ID
+	--
+	* prefecture_name
+}
+
+inventory }o--|| product
+inventory }o--|| store
+inventory }o--|| prefecture
+'/
+
+@enduml
