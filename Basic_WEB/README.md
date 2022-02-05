@@ -238,3 +238,23 @@ For example,
                     ↓          ↑
 ・Data layer -> OracleDB (Manipulate database)
 ```
+
+## MVC model(architecture)
+
+One of the approaches to programming methods.  
+MVC stands for Model, View, Controller, and is a method of implementing a process by dividing it into three roles.  
+MVC is a presentation layer architecture.
+
+- Model
+
+	It is in charge of data management.  
+	It handles the data and business processing that the application handles.
+
+- View
+
+	It is in charge ofr screen input and output.
+
+- Controller
+
+	It is in charge of business logic.  
+	Control the model based on the user's actions.
