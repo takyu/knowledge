@@ -29,3 +29,5 @@ This section summarizes the relationship between PHP and the Web.
 12. Authentication
 
 13. Todo Application
+
+14. Password
