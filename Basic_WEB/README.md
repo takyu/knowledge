@@ -258,3 +258,25 @@ MVC is a presentation layer architecture.
 
 	It is in charge of business logic.  
 	Control the model based on the user's actions.
+
+## Hashing
+
+To obtain a fixed-length, seemingly random hash value by a special calculation procedure.  
+In PHP, **bcrypt** is used as a hash function when passwords and other data hash.  
+Hash function is a function for hashing and includes MD5, SHA256, bcrypt, etc..  
+Often used to determine if the passwords match and used as a way to store passwords.
+
+- Features of hashing
+
+	- From the hash value to before the hash value (plaintext) is not computable (irreversible)
+
+	- If the input characters are different, the generated hash value will almost always be different.
+
+However, crackers (e.g., those who attack DBs) can use a rainbow table, which is a set of plain text and hash values, to analyze the original password, even if it is a hash value password.  
+To deal with this, ***Salt*** is used.
+
+## Salt
+
+A random string of characters to be concatenated with the string which is before hashed.  
+Because the salt is random, it is impossible to identify the hash.  
+Therefore, when a password is hashed, the salt is added before hashing.
