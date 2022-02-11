@@ -1,0 +1,9 @@
+$cBlack: gray;
+$cBlack: Black !default;
+$primary: purple;
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+body {
+	background-color: $cBlack;
+}
