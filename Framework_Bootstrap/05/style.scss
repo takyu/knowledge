@@ -1,0 +1,21 @@
+$body-bg: #CCFFCC;
+$body-color: #6b7280;
+$font-size-base: 0.9rem;
+$input-btn-padding-x: 1.3rem;
+$input-btn-padding-x-lg: 1.2rem;
+//$primary: #3882F6;
+$font-family-base: 'M PLUS Rounded 1c', sans-serif;
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+.login-form {
+	width: 300px;
+}
+
+a {
+	text-decoration: none;
+	
+	&:hover {
+		text-decoration: underline;
+	}
+}
