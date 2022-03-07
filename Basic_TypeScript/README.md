@@ -36,3 +36,21 @@ TypeScript is a strongly typed programming language that builds on JavaScript, g
 4. [Class](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/04)
 
 5. [Type Alias](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/05)
+
+6. [Union and Intersection](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/06)
+
+7. [Generics](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/07)
+
+8. [Type Interface](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/08)
+
+9. [Type Assertion](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/09)
+
+10. [typeof](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/10)
+
+11. [keyof](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/11)
+
+12. [as const](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/12)
+
+13. [.d.ts](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/13)
+
+14. [Index Signature](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/14)
