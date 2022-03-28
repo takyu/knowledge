@@ -1,5 +1,7 @@
 /**
  * Type Alias
+ *
+ * can primitive type and literal type and object type
  */
 {
   type Name = string;
