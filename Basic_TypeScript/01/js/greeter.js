@@ -4,5 +4,6 @@
         return "Hello, " + person;
     };
     const user = "takyu";
-    document.body.textContent = greeter(user);
+    const greet = document.querySelector('#greet');
+    greet.textContent = greeter(user);
 }

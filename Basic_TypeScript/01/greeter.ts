@@ -5,5 +5,7 @@
 
   const user = "takyu";
 
-  document.body.textContent = greeter(user);
+  const greet: HTMLDivElement = <HTMLDivElement>document.querySelector('#greet');
+
+  greet.textContent = greeter(user);
 }
