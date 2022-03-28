@@ -61,3 +61,5 @@ Provides optional ***static typing*** capability.
 13. [.d.ts](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/13)
 
 14. [Index Signature](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/14)
+
+15. [tsc settings files](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/15)
