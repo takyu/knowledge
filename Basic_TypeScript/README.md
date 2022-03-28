@@ -32,6 +32,12 @@ Provides optional ***static typing*** capability.
 
 	11. Object
 
+	12. Enum
+
+	13. Literal
+
+	14. Unknown
+
 3. [Interface](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/03)
 
 4. [Class](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/04)

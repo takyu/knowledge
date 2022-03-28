@@ -23,4 +23,28 @@
         'grape', 10, 'banana'
     ];
     console.log(fruits3);
+    // オブジェクトの中で明示的に指名
+    var person = {
+        name: 'John',
+        age: 10,
+        hobbies: [
+            'soccer',
+            'tennis'
+        ],
+        role: [
+            2, 'author'
+        ]
+    };
+    /**
+     * 三つめの要素を追加することや、指定された型に無いものを代入することは不可
+     *
+     * しかし、pushは許容するので注意
+     */
+    // person.role = [0, 'user', 'admin']
+    // person.role.push(true);
+    // person.role[1] = 10;
+    console.log("🚀 ~ file: tupleType.ts ~ line 57 ~ person", person);
+    // 許容
+    person.role.push('admin');
+    console.log("🚀 ~ file: tupleType.ts ~ line 57 ~ person", person);
 }
