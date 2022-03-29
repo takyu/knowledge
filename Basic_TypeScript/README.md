@@ -42,6 +42,28 @@ Provides optional ***static typing*** capability.
 
 4. [Class](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/04)
 
+	1. Constructor and This
+
+	2. Access Operator
+
+	3. Class Short Hand
+
+	4. Inheritance
+
+	5. getter / setter
+
+	6. Static method and property
+
+	7. Abstract
+
+	8. Singleton and Readonly property
+
+	9. Interface and Readonly
+
+	10. Inheritance of interface
+
+	11. Optional property and parameter
+
 5. [Type Alias](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/05)
 
 6. [Union and Intersection](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/06)
