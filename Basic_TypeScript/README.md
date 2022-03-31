@@ -131,3 +131,5 @@ Provides optional ***static typing*** capability.
 	10. Create 'Autobind' Decorator
 
 	11. Create to validate by Decorator
+
+10. [.d.ts](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/10)
