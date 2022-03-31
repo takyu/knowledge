@@ -1,16 +1,53 @@
 {
+  /**
+   * クラス、プロパティごとのバリデーション設定を保存する型
+   */
   interface ValidatorConfig {
-    [prop: string]: {
-      [validatableProp: string]: string[]; // ['required', 'positive' ...]
+    [prop: string /* クラス名 */]: {
+      [validatableProp: string /* プロパティ名 */]: string[]; // ['required', 'positive' ...]
     };
   }
 
   const registeredValidators: ValidatorConfig = {};
 
+  /**
+   * Object initializer
+   *
+   * object の property を value によって定義している
+   * (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer)
+   *
+   * registeredValidators[target.constructor.name // ここでは、Course ] = {} は、
+   * const registeredValidators = {
+   *  Course: {}
+   * }
+   * を意味する。さらに、
+   *
+   * registeredValidators[target.constructor.name] = {
+   *  [name // ここでは、property の名前として title]: ['required']
+   * }; は、
+   *
+   * const registeredValidators = {
+   *  Course: {
+   *    title: ['required']
+   *  };
+   * }
+   * を意味する。
+   */
   function Required(target: any, name: string) {
-    registeredValidators[target.constructor.name] = {
+    registeredValidators[
+      target.constructor.name /* ここでは、Course という名前 */
+    ] = {
+      /**
+       * クラスのプロパティに対するバリデーションを毎回新しいオブジェクトに
+       * 上書きされるのを防ぐために、上書きされる前のバリデーションを
+       * コピーしておく。
+       */
       ...registeredValidators[target.constructor.name],
       [name]: [
+        /**
+         * 一つのバリデータの値しか配列に保存されないことを防ぐために、
+         * 上書きされる前にあったバリデータの値を上書きしてから追加する。
+         */
         ...(registeredValidators[target.constructor.name]?.[name] ?? []),
         'required',
       ],
@@ -27,21 +64,37 @@
     };
   }
 
-  function validate(obj: any) {
+  function validate(obj: any /* さまざまなオブジェクトを受け取れるようにする */) {
     const objValidatorConfig = registeredValidators[obj.constructor.name];
     if (!objValidatorConfig) {
+      // validation 設定が無いので、する必要がない　→ 正しいと判断
       return true;
     }
 
+    /**
+     * そもそも、そのクラスに対しての validate が登録されておらず、
+     * 一回もループしないことが有り得るので、初期値として、true を設定
+     */
     let isValid = true;
 
+    /**
+     * 各 property に登録されている validator と property をの組み合わせをループさせる
+     */
     for (const prop in objValidatorConfig) {
+      /**
+       * その property に登録されているすべての validate をループさせる
+       */
       for (const validator of objValidatorConfig[prop]) {
         switch (validator) {
           case 'required':
-            isValid = isValid && !!obj[prop]; // !! をつけることによって、boolean で返すことができる
+
+            // !! をつけることによって、truethy な値を boolean で返すことができる
+            isValid = isValid && !!obj[prop]; // 途中で一つでも false があれば、&演算子により、false
+            break;
+
           case 'positive':
             isValid = isValid && obj[prop] > 0;
+            break;
         }
       }
     }
