@@ -91,3 +91,43 @@ Provides optional ***static typing*** capability.
 	10. Inheritance of interface
 
 	11. Optional property and parameter
+
+8. [Generics](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/08)
+
+	1. Generics
+
+	2. Generics Functions
+
+	3. Restrict Generics Functions
+
+	4. Advanced Generics Functions
+
+	5. keyof
+
+	6. Class Generics
+
+	7. Utility of Generics
+
+9. [Decorators](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/09)
+
+	1. Class Decorators
+
+	2. Decorators Factory
+
+	3. Decorators with Template
+
+	4. Apply to multiple Decorators
+
+	5. Property Decorators
+
+	6. Accessor, Method, and Parameter Decorators
+
+	7. Decorator evaluation order
+
+	8. Return value by Class Decorators
+
+	9. Return value by Accessor, Method Decorators
+
+	10. Create 'Autobind' Decorator
+
+	11. Create to validate by Decorator
