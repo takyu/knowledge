@@ -133,3 +133,7 @@ Provides optional ***static typing*** capability.
 	11. Create to validate by Decorator
 
 10. [.d.ts](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/10)
+
+11. [declare](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/11)
+
+12. [Third Party Library](https://github.com/takyu/knowledge/tree/main/Basic_TypeScript/12)
