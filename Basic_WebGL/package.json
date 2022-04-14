@@ -1,0 +1,32 @@
+{
+  "name": "Basic_WebGL",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "lsv": "lite-server -c bs-config.json",
+    "start": "webpack serve --color --progress",
+    "dev": "webpack --color --progress",
+    "prod": "webpack --color --progress --config webpack.config.prod.js",
+    "watch": "webpack --watch --color --progress",
+    "deploy": "yarn prod && gh-pages -d dist"
+  },
+  "devDependencies": {
+    "@types/three": "^0.139.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "gh-pages": "^3.2.3",
+    "glslify-loader": "^2.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "lite-server": "^2.6.1",
+    "raw-loader": "^4.0.2",
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.6.3",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1",
+    "webpack-watched-glob-entries-plugin": "^2.2.4"
+  },
+  "dependencies": {
+    "three": "^0.139.2"
+  }
+}

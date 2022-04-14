@@ -1,0 +1,12 @@
+{
+  "port": 61345,
+  "files": [
+    "./dist/**/*.{html,htm,css,js}"
+  ],
+  "server": {
+    "baseDir": "./"
+  },
+  "startPath": "./dist/index.html",
+  "open": true,
+  "browser": "google chrome"
+}
