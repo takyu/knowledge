@@ -3,6 +3,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const entries = WebpackWatchedGlobEntries.getEntries(
   [path.resolve(__dirname, './src/ts/**/*.ts')],
@@ -102,6 +103,14 @@ module.exports = {
       inject: false,
     }),
     ...htmlGlobPlugins(entries, './html'),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: `${__dirname}/src/img`,
+          to: `${__dirname}/dist/img`,
+        },
+      ],
+    }),
   ],
 
   resolve: {
