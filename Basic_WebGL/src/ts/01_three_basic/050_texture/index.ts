@@ -38,7 +38,7 @@ async function init() {
     /**
      * 読み込んだ texture を map というプロパティに渡す
      */
-    map: texture
+    map: texture,
   });
 
   const plane = new THREE.Mesh(geometry, material);

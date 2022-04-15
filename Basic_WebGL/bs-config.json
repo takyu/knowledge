@@ -4,9 +4,9 @@
     "./dist/**/*.{html,htm,css,js}"
   ],
   "server": {
-    "baseDir": "./"
+    "baseDir": "./dist"
   },
-  "startPath": "./dist/index.html",
+  "startPath": "./index.html",
   "open": true,
   "browser": "google chrome"
 }
