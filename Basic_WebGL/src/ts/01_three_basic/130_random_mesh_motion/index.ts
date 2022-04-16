@@ -4,6 +4,11 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 init();
 
+function mapRand(min: number, max: number, isInt: boolean = false): number {
+  let rand = Math.random() * (max - min) + min;
+  return isInt ? Math.round(rand) : rand;
+}
+
 async function init() {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
@@ -20,30 +25,18 @@ async function init() {
 
   document.body.appendChild(renderer.domElement);
 
-  const meshes: THREE.Mesh[] = [],
-    MESH_NUM = 50,
-    POS_RANGE = 100,
-    MAX_SCALE = 1.5,
-    TARGET_MESH_NUM = 10;
-
   /**
-   * THREE.mesh オブジェクトのメソッドを拡張
-   *
-   * あまり良く無い方法だが、THREE.Mesh クラスを any にキャストして拡張
+   * 定数定義
    */
-  // const active = Symbol('active');
+  const MESH_INFO = {
+    NUM: 50,
+    POS_RANGE: 100,
+    MAX_SCALE: 1.5,
+    TARGET_NUM: 10,
+  } as const;
+  type MESH_INFO = typeof MESH_INFO[keyof typeof MESH_INFO];
 
-  // (<any>THREE.Mesh).prototype[active] = function () {
-  //   const direction = mapRand(0.5, 1.3);
-  //   this.position.x += direction;
-  // };
-
-  // const extendTHREEMesh = <any>new THREE.Mesh();
-
-  function mapRand(min: number, max: number, isInt: boolean = false): number {
-    let rand = Math.random() * (max - min) + min;
-    return isInt ? Math.round(rand) : rand;
-  }
+  const meshes: THREE.Mesh[] = [];
 
   function randomMesh(): THREE.Mesh {
     const geometries = [
@@ -59,12 +52,12 @@ async function init() {
     );
 
     const pos = {
-      x: mapRand(-POS_RANGE, POS_RANGE),
-      y: mapRand(-POS_RANGE, POS_RANGE),
-      z: mapRand(-POS_RANGE, POS_RANGE),
+      x: mapRand(-MESH_INFO.POS_RANGE, MESH_INFO.POS_RANGE),
+      y: mapRand(-MESH_INFO.POS_RANGE, MESH_INFO.POS_RANGE),
+      z: mapRand(-MESH_INFO.POS_RANGE, MESH_INFO.POS_RANGE),
     };
 
-    const scale = mapRand(1, MAX_SCALE);
+    const scale = mapRand(1, MESH_INFO.MAX_SCALE);
 
     /**
      * light による光の影響を受けるために material を変更
@@ -86,7 +79,7 @@ async function init() {
     }
   }
 
-  generateMeshes(meshes, MESH_NUM);
+  generateMeshes(meshes, MESH_INFO.NUM);
 
   scene.add(...meshes);
 
@@ -131,11 +124,16 @@ async function init() {
    */
   let targetMeshes: any[] = [];
 
-  type TPosition = {
-    x: number;
-    y: number;
-    z: number;
-  };
+  /**
+   * THREE.mesh オブジェクトのメソッドを拡張
+   *
+   * あまり良く無い方法だが、THREE.Mesh クラスを any にキャストして拡張
+   *
+   * [problem]
+   * → ts での Symbol を用いた prototype の入れ方がわからない、、、
+   */
+  // const action = Symbol('action');
+  // (<any>THREE.Mesh.prototype)[action] = getAction(mesh.position);
 
   /**
    * x, y, z 軸いずれかの方向にどれくらい動かすか決める関数
@@ -143,11 +141,7 @@ async function init() {
    * 現在のポジションが原点から見て、負の位置にいる場合正の方向に、
    * 正の位置にいる場合は負の方向に動かす。
    */
-  function getAction(position: TPosition) {
-    const x: number = position.x;
-    const y: number = position.y;
-    const z: number = position.z;
-
+  function getAction({ x, y, z }: THREE.Vector3): Function {
     const rand = mapRand(0.7, 1.3);
 
     const ACTIONS = [
@@ -174,13 +168,15 @@ async function init() {
     /**
      * 2000ms 毎に回ってきた際に、動く mesh の対象を全て削除、初期化しておく
      */
+    // targetMeshes.forEach((mesh) => (mesh[action] = null));
     targetMeshes.forEach((mesh) => (mesh.__action = null));
     targetMeshes = [];
 
-    for (let i = 0; i < TARGET_MESH_NUM; i++) {
+    for (let i = 0; i < MESH_INFO.TARGET_NUM; i++) {
       const mesh: any = meshes[mapRand(0, meshes.length - 1, true)];
 
-      mesh.__action = getAction(mesh.position as TPosition);
+      // 一時的に、any にして対応
+      mesh.__action = getAction(mesh.position);
 
       targetMeshes.push(mesh);
     }
@@ -193,8 +189,8 @@ async function init() {
     targetMeshes.forEach((mesh) => mesh.__action());
 
     // メッシュのある範囲より近い場合は、カメラを徐々に引いていく
-    if (POS_RANGE > camera.position.z) {
-      camera.position.z += 0.4;
+    if (MESH_INFO.POS_RANGE > camera.position.z) {
+      camera.position.z += 0.2;
     }
 
     renderer.render(scene, camera);
