@@ -1,4 +1,3 @@
-// js のコードなので、require で対応
 var { makeDebugContext } = require('webgl-debug');
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -20,9 +19,6 @@ function startup() {
     return;
   }
 
-  /**
-   * context の位置と大きさを canvas と同じに設定
-   */
   const ctxViewportInfo: TCtxViewportInfo = {
     x: 0,
     y: 0,
@@ -30,9 +26,6 @@ function startup() {
     height: canvas.height,
   };
 
-  /**
-   * コンソールなどで、エラーの詳細な内容を表示してくれる Debug ライブラリ
-   */
   gl = makeDebugContext(gl);
 
   const shaderProgram = setupShaders();
@@ -41,6 +34,7 @@ function startup() {
     program: shaderProgram,
     attribLocations: {
       position: gl.getAttribLocation(shaderProgram, 'aVertexPosition'),
+      color: gl.getAttribLocation(shaderProgram, 'aVertexColor'),
     },
   };
   programInfo.verticeNum = setupBuffers(programInfo as TProgramInfo);
@@ -48,9 +42,6 @@ function startup() {
   draw(programInfo as TProgramInfo, ctxViewportInfo);
 }
 
-/**
- * WebGLコンテキストの作成
- */
 function createGLContext(canvas: HTMLCanvasElement) {
   let ctx = canvas.getContext('webgl')! as WebGLRenderingContext;
   if (!ctx) {
@@ -59,63 +50,63 @@ function createGLContext(canvas: HTMLCanvasElement) {
   return ctx;
 }
 
-/**
- * シェーダーコードの読み込み
- */
 function loadShader(type: number, shaderSource: string) {
-  // fragment、またはvertexのシェーダータイプを指定
   const shader = gl.createShader(type)! as WebGLShader;
-  // シェーダーコードを指定
+
   gl.shaderSource(shader, shaderSource);
-  // シェーダーコードをバイナリコードにコンパイル
   gl.compileShader(shader);
 
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
     console.error('could not create shader.' + gl.getShaderInfoLog(shader));
-    // 問題のあるコードの場合は削除
     gl.deleteShader(shader);
     return null;
   }
+
   return shader;
 }
 
-/**
- * シェーダーコードをWebGLコンテキストにバインド
- */
 function setupShaders() {
+  /**
+   * vec3 でカラーを渡す
+   *
+   * なお、一番先頭の precision mediump float
+   * は、小数点の精度を決定するもの。
+   * precision highp float もあるが、こちらは正確に計算するため、
+   * パフォーマンスが悪くなってしまう欠点がある。
+   */
   const vertexShaderSource = `
     precision mediump float;
+
     attribute vec2 aVertexPosition;
+    attribute vec3 aVertexColor;
+    varying vec3 vVertexColor;
 
     void main() {
       vec2 p = aVertexPosition;
+      vVertexColor = aVertexColor;
       gl_Position = vec4(p, 0.0, 1.0);
     }
     `;
   const fragmentShaderSource = `
     precision mediump float;
 
+    varying vec3 vVertexColor;
+
     void main() {
-        gl_FragColor = vec4(1., 0., 0., 1.);
+        gl_FragColor = vec4(vVertexColor, 1.);
     }
   `;
 
   const vertexShader = loadShader(gl.VERTEX_SHADER, vertexShaderSource)!;
   const fragmentShader = loadShader(gl.FRAGMENT_SHADER, fragmentShaderSource)!;
 
-  // プログラムの作成
   const shaderProgram = gl.createProgram()! as WebGLProgram;
 
-  // プログラムにシェーダーをバインド
   gl.attachShader(shaderProgram, vertexShader);
   gl.attachShader(shaderProgram, fragmentShader);
 
-  /**
-   * vertexシェーダーとfragmentシェーダーをリンク
-   *
-   * varying などで値の受け渡しが可能になる
-   */
   gl.linkProgram(shaderProgram);
+
   if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
     console.error('could not setup shader');
   }
@@ -123,58 +114,77 @@ function setupShaders() {
   return shaderProgram;
 }
 
-// 頂点データを格納するバッファを設定
 function setupBuffers(pInfo: TProgramInfo) {
-  // 頂点の数
+  /**
+   * 頂点を設定
+   */
   const verticeNum = 3;
-
-  // 位置を管理する頂点の入れ物（バッファ）を作成
   const vertexPositionBuffer = gl.createBuffer();
 
-  // 頂点の位置を指定（-1 ~ 1）
-  const triangleVertices = [-1, -1, 1, 1, -1, 1];
+  const triangleVertices = [1, 0, -1, -1, -1, 1];
 
-  // ARRAY_BUFFERに頂点データを格納するバッファを紐づける
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexPositionBuffer);
 
-  // ARRAY_BUFFERバッファに頂点データをロードする
   gl.bufferData(
     gl.ARRAY_BUFFER,
-
-    // 必要最低限の浮動小数点を設定、ここでは32bit分の小数で表す
     new Float32Array(triangleVertices),
     gl.STATIC_DRAW
   );
 
-  /**
-   * シェーダーコード内から抽出された属性（attribute）と上記でアップした頂点データを紐づける
-   *
-   * Buffer の参照を使って定義しているので、buffer の操作をしなくても良い
-   */
   gl.vertexAttribPointer(
     pInfo.attribLocations.position,
-
-    // 一つの頂点の場所をどれくらいの数で表すか。ここでは、xy 座標系 → vec2
     triangleVertices.length / verticeNum,
-
     gl.FLOAT,
     false,
     0,
     0
   );
 
-  // 属性を有効化する
   gl.enableVertexAttribArray(pInfo.attribLocations.position);
+
+  /**
+   * 色を設定
+   */
+  const vertexColorBuffer = gl.createBuffer();
+
+  const colorVertices = [
+    // (1, 0) の色
+    1, 0, 0,
+
+    // (-1, -1) の色
+    0, 1, 0,
+
+    // (-1, 1)の色
+    0, 0, 1,
+  ];
+
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexColorBuffer);
+
+  gl.bufferData(
+    gl.ARRAY_BUFFER,
+    new Float32Array(colorVertices),
+    gl.STATIC_DRAW
+  );
+
+  gl.vertexAttribPointer(
+    pInfo.attribLocations.color!,
+    colorVertices.length / verticeNum,
+    gl.FLOAT,
+    false,
+    0,
+    0
+  );
+
+  gl.enableVertexAttribArray(pInfo.attribLocations.color!);
 
   return verticeNum;
 }
 
-// 画面描写
 function draw(pInfo: TProgramInfo, cvInfo: TCtxViewportInfo) {
   // WebGLのコンテキストとキャンパスのサイズを同じにする。
   gl.viewport(cvInfo.x, cvInfo.y, cvInfo.width, cvInfo.height);
   // 背景色を特定の色で指定（0~1のrgbaで指定）
-  gl.clearColor(0, 0, 1, 1);
+  gl.clearColor(0, 0, 0, 1);
   // 上記で指定した背景色を描写
   gl.clear(gl.COLOR_BUFFER_BIT);
   // WebGLのコンテキストが使用するプログラムを指定
@@ -183,5 +193,4 @@ function draw(pInfo: TProgramInfo, cvInfo: TCtxViewportInfo) {
   gl.drawArrays(gl.TRIANGLES, 0, pInfo.verticeNum);
 }
 
-// make file ES Module
 export {};
