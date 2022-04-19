@@ -4,11 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "prelsv": "webpack --color --progress",
     "lsv": "lite-server -c bs-config.json",
     "start": "webpack serve --color --progress",
     "dev": "webpack --color --progress",
     "prod": "webpack --color --progress --config webpack.config.prod.js",
     "watch": "webpack --watch --color --progress",
+    "predeploy": "webpack --color --progress --config webpack.config.prod.js",
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {

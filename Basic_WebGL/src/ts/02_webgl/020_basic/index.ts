@@ -1,5 +1,5 @@
-// js のコードなので、require で対応
-var { makeDebugContext } = require('webgl-debug');
+// context debug tool
+import { makeDebugContext } from 'webgl-debug';
 
 window.addEventListener('DOMContentLoaded', () => {
   startup();

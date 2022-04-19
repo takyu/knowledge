@@ -25,6 +25,20 @@ Libraries for easy use of WebGL.
 
 ## Usage
 
+For a quick check, enter the following command.
+
+- npm
+
+	```sh
+	npm i && npm run lsv
+	```
+
+- yarn
+
+	```sh
+	yarn && yarn lsv
+	```
+
 ### Getting started
 
 - Install packages
@@ -64,8 +78,6 @@ From here on, only the yarn command is described.
 	```sh
 	yarn lsv
 	```
-
-	After enter the command yarn dev or yarn prod to create a project in the dist directory, then run it.
 
 - webpack watch mode
 

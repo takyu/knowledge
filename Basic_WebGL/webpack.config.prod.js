@@ -8,7 +8,10 @@ const CopyPlugin = require('copy-webpack-plugin');
 const entries = WebpackWatchedGlobEntries.getEntries(
   [path.resolve(__dirname, './src/ts/**/*.ts')],
   {
-    ignore: path.resolve(__dirname, './src/ts/**/_*.ts'),
+    ignore: [
+      path.resolve(__dirname, './src/ts/**/_*.ts'),
+      path.resolve(__dirname, './src/ts/**/@types/*.d.ts'),
+    ],
   }
 )();
 
@@ -46,10 +49,16 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
-      {
+      /* {
         test: /\.(glsl|vs|fs|vert|frag)$/,
         exclude: /node_modules/,
         use: ['raw-loader', 'glslify-loader'],
+      }, */
+
+      // use ts-shader-loader
+      {
+        test: /\.(glsl|vs|fs|vert|frag)$/,
+        loader: 'ts-shader-loader',
       },
     ],
   },

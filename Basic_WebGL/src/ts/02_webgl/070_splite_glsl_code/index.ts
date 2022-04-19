@@ -2,7 +2,9 @@
  * GLSL
  * OpenGl Shading Language
  */
-var { makeDebugContext } = require('webgl-debug');
+
+// context debug tool
+import { makeDebugContext } from 'webgl-debug';
 
 // import shader
 import vertShaderSource from '@shader/02_webgl/070_splite_glsl_code/vertex.glsl';
