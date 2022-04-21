@@ -100,14 +100,7 @@ module.exports = {
     extensions: ['.ts', '.js'],
     alias: {
       '~': path.resolve(__dirname, 'src'),
-    },
-  },
-
-  cache: {
-    type: 'filesystem',
-    allowCollectingMemory: true,
-    buildDependencies: {
-      config: [__filename],
+      '@shader': path.resolve(__dirname, 'src/shader'),
     },
   },
 };
