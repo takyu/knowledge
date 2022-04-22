@@ -33,6 +33,10 @@
     "webpack-watched-glob-entries-plugin": "^2.2.4"
   },
   "dependencies": {
+    "glsl-hsl2rgb": "^1.1.0",
+    "glsl-noise": "^0.0.0",
+    "glslify": "^7.1.1",
+    "gsap": "^3.10.3",
     "stats.js": "^0.17.0",
     "three": "^0.139.2",
     "webgl-debug": "^2.0.1"

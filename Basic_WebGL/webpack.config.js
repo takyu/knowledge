@@ -75,17 +75,18 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
-      /* {
+      {
         test: /\.(glsl|vs|fs|vert|frag)$/,
         exclude: /node_modules/,
         use: ['raw-loader', 'glslify-loader'],
-      }, */
-
-      // use ts-shader-loader
-      {
-        test: /\.(glsl|vs|fs|vert|frag)$/,
-        loader: 'ts-shader-loader',
       },
+
+      // don't use because of not reading glslify.
+      // {
+      //   test: /\.(glsl|vs|fs|vert|frag)$/,
+      //   exclude: /node_modules/,
+      //   loader: 'ts-shader-loader',
+      // },
     ],
   },
 
