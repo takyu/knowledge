@@ -165,3 +165,131 @@ The data that passes from Vertex Shader to Fragment Shader.
 
 The vertex shader is executed for each vertex and the fragment shader is executed for each fragment, so there is no one-to-one.  
 Therefore, To be one-to-one, values which are done [***linear interpolation***](https://en.wikipedia.org/wiki/Linear_interpolation) are passed to fragments between vertices.
+
+## uv coordinates (texture coordinates)
+
+Coordinates in texture space, assigned as vertex attributes and/or calculated in vertex shaders, used for texture lookup,  
+defining the mapping from texture space to a 3D model surface or any rendering primitive.  
+Mainly a coordinate system used to extract color information from sampler2D textures.
+
+```text
+(0, 0) ~ (1, 1)
+```
+
+## clip coordinates
+
+Clip coordinates finally processed by gl_position.  
+<https://en.wikipedia.org/wiki/Clip_coordinates>
+
+```text
+(0, 0, 0) ~ (1, 1 ,1)
+```
+
+### WebGL Processing Flow
+
+1. Object coordinates ( Model coordinates )
+
+	Object's own coordinates.  
+	It is the position of ***attribute***.
+
+	↓ transformation ( model matrix ( using position, rotate, scale of ***Mesh***) )
+
+2. World coordinates
+
+	Coordinates in 3D space.  
+	Also, Coordinates in space after being added to scene.
+
+	↓ transformation ( view matrix ( using position, rotate of ***Camera*** ) )
+
+3. Viewpoint coordinates
+
+	Coordinates considering camera position and angle.
+
+	↓ transformation ( ***projectionMatrix*** ( using PerspectiveCamera, OrthographicCamera of ***Camera*** ) )
+
+4. Clip coordinates
+
+	Coordinates finally processed by gl_position.
+
+Also, the transformation from 1 to 3 is called ***modelViewMatrix***.
+
+## PerspectiveCamera
+
+Use to create a sense of perspective.  
+<https://threejs.org/docs/#api/en/cameras/PerspectiveCamera>
+
+```ts
+PerspectiveCamera(
+	fov : number,
+	aspect : number,
+	near : number,
+	far : number
+);
+```
+
+### Constructor of PerspectiveCamera
+
+- ***aspec***t
+
+	Camera frustum aspect ratio, usually the canvas width / canvas height.  
+	Default is 1 (square canvas).
+
+- ***near***
+
+	Camera frustum near plane.  
+	Default is 0.1.
+
+- ***far***
+
+	Camera frustum far plane.  
+	Default is 2000.  
+	Must be greater than the current value of near plane.
+
+- ***fov***
+
+	Camera frustum vertical field of view, from bottom to top of view, in degrees.  
+	Default is 50.
+
+## OrthographicCamera
+
+Use when perspective is not desired.  
+<https://threejs.org/docs/#api/en/cameras/OrthographicCamera>
+
+```ts
+OrthographicCamera(
+	left : number,
+	right : number,
+	top : number,
+	bottom : number,
+	near : number,
+	far : number
+);
+```
+
+### Constructor of OrthographicCamera
+
+- left
+
+	Camera frustum left plane.
+
+- right
+
+	Camera frustum right plane.
+
+- top
+
+	Camera frustum top plane.
+
+- bottom
+
+	Camera frustum bottom plane.
+
+- near
+
+	Camera frustum near plane.  
+	Default is 0.1.
+
+- far
+
+	Camera frustum far plane.  
+	Default is 2000.

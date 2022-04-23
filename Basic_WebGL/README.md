@@ -25,7 +25,7 @@ Libraries for easy use of WebGL.
 
 ## Usage
 
-For a quick check, enter the following command.
+For a quick start, enter the following command.
 
 - npm
 

@@ -16,6 +16,7 @@ const entries = WebpackWatchedGlobEntries.getEntries(
 )();
 
 const htmlGlobPlugins = (entries, srcPath) => {
+  console.log(entries);
   return Object.keys(entries).map(
     (key) =>
       new HtmlWebpackPlugin({
