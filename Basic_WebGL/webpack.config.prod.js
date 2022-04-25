@@ -3,6 +3,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const entries = WebpackWatchedGlobEntries.getEntries(
   [path.resolve(__dirname, './src/ts/**/*.ts')],
@@ -98,6 +99,11 @@ module.exports = {
         default: false,
       },
     },
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false,
+      }),
+    ],
   },
 
   plugins: [

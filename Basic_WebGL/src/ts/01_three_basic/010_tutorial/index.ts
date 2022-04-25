@@ -36,6 +36,30 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 /**
+ * リサイズに対応する処理
+ */
+onResize();
+
+window.addEventListener('resize', onResize);
+window.addEventListener('orientationchange', onResize);
+
+function onResize() {
+  // サイズを取得
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  // レンダラーのPixelRatioを更新する
+  renderer.setPixelRatio(window.devicePixelRatio);
+  // レンダラーのサイズを画面の幅に合わせる
+  renderer.setSize(width, height);
+
+  // カメラのアスペクト比を正す
+  camera.aspect = width / height;
+  // アスペクト比の変更を有効にする
+  camera.updateProjectionMatrix();
+}
+
+/**
  * Geometry
  *
  * 物体の形を定義。平面や球など

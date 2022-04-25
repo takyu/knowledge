@@ -32,6 +32,30 @@ async function init() {
   renderer.setClearColor(0xffffff);
   document.body.appendChild(renderer.domElement);
 
+  /**
+   * リサイズに対応する処理
+   */
+  onResize();
+
+  window.addEventListener('resize', onResize);
+  window.addEventListener('orientationchange', onResize);
+
+  function onResize() {
+    // サイズを取得
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // レンダラーのPixelRatioを更新する
+    renderer.setPixelRatio(window.devicePixelRatio);
+    // レンダラーのサイズを画面の幅に合わせる
+    renderer.setSize(width, height);
+
+    // カメラのアスペクト比を正す
+    camera.aspect = width / height;
+    // アスペクト比の変更を有効にする
+    camera.updateProjectionMatrix();
+  }
+
   // 頂点の情報を定義
   const geometry = new THREE.PlaneGeometry(20, 10);
 
