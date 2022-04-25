@@ -1,5 +1,10 @@
 import * as THREE from 'three';
 
+/**
+ * image files
+ */
+import textureImage from '@img/aurora.jpg';
+
 init();
 
 /**
@@ -32,7 +37,7 @@ async function init() {
   /**
    * 非同期で読み込む
    */
-  const texture = await texLoader.loadAsync('/img/aurora.jpg');
+  const texture = await texLoader.loadAsync(textureImage);
 
   const material = new THREE.MeshBasicMaterial({
     /**

@@ -3,6 +3,11 @@ import * as THREE from 'three';
 import vertexShader from '@shader/03_three_shader/040_color_replace/vertex.glsl';
 import fragmentShader from '@shader/03_three_shader/040_color_replace/fragment.glsl';
 
+/**
+ * image files
+ */
+import textureImage from '@img/aurora.jpg';
+
 init();
 
 // texture を取得する関数
@@ -34,7 +39,7 @@ async function init() {
   const material = new THREE.ShaderMaterial({
     uniforms: {
       uTex: {
-        value: await loadTex('/img/aurora.jpg'),
+        value: await loadTex(textureImage),
       },
       uTick: {
         // float 型は threejs の方で推論してくれる。

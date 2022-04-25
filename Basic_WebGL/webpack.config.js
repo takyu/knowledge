@@ -3,7 +3,6 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackWatchedGlobEntries = require('webpack-watched-glob-entries-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 
 const entries = WebpackWatchedGlobEntries.getEntries(
   [path.resolve(__dirname, './src/ts/**/*.ts')],
@@ -40,6 +39,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'js/[name].bundle.js',
+    assetModuleFilename: 'assets/images/[name].[contenthash][ext]',
     publicPath: 'auto',
   },
 
@@ -71,11 +71,23 @@ module.exports = {
 
   module: {
     rules: [
+      // {
+      //   test: /\.ts$/,
+      //   use: 'ts-loader',
+      //   exclude: /node_modules/,
+      // },
+
+      // Using Babel.
       {
-        test: /\.ts$/,
-        use: 'ts-loader',
+        test: /\.(ts|js)$/,
         exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+        ],
       },
+
       {
         test: /\.(glsl|vs|fs|vert|frag)$/,
         exclude: /node_modules/,
@@ -88,6 +100,16 @@ module.exports = {
       //   exclude: /node_modules/,
       //   loader: 'ts-shader-loader',
       // },
+
+      // Asset Modules
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.html$/i,
+        loader: 'html-loader',
+      },
     ],
   },
 
@@ -114,14 +136,6 @@ module.exports = {
       inject: false,
     }),
     ...htmlGlobPlugins(entries, './html'),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: `${__dirname}/src/img`,
-          to: `${__dirname}/dist/img`,
-        },
-      ],
-    }),
   ],
 
   resolve: {
@@ -129,6 +143,7 @@ module.exports = {
     alias: {
       '~': path.resolve(__dirname, 'src'),
       '@shader': path.resolve(__dirname, 'src/shader'),
+      '@img': path.resolve(__dirname, 'src/img'),
     },
   },
 

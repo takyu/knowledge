@@ -4,6 +4,12 @@ import GUI from 'lil-gui';
 import vertexShader from '@shader/03_three_shader/100_fade_slide/vertex.glsl';
 import fragmentShader from '@shader/03_three_shader/100_fade_slide/fragment.glsl';
 
+/**
+ * image files
+ */
+import textureImage1 from '@img/aurora.jpg';
+import textureImage2 from '@img/nightsky.jpg';
+
 init();
 
 // texture を取得する関数
@@ -43,10 +49,10 @@ async function init() {
   const material = new THREE.ShaderMaterial({
     uniforms: {
       uTexCurrent: {
-        value: await loadTex('/img/aurora.jpg'),
+        value: await loadTex(textureImage1),
       },
       uTexNext: {
-        value: await loadTex('/img/nightsky.jpg'),
+        value: await loadTex(textureImage2),
       },
       uTick: {
         value: 0,

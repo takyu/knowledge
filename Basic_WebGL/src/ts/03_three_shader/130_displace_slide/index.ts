@@ -5,6 +5,13 @@ import { gsap } from 'gsap';
 import vertexShader from '@shader/03_three_shader/130_displace_slide/vertex.glsl';
 import fragmentShader from '@shader/03_three_shader/130_displace_slide/fragment.glsl';
 
+/**
+ * image files
+ */
+import textureImage1 from '@img/aurora.jpg';
+import textureImage2 from '@img/nightsky.jpg';
+import displacementImage from '@img/displacement/displacement2.jpg';
+
 init();
 
 // texture を取得する関数
@@ -44,15 +51,15 @@ async function init() {
   const material = new THREE.ShaderMaterial({
     uniforms: {
       uTexCurrent: {
-        value: await loadTex('/img/aurora.jpg'),
+        value: await loadTex(textureImage1),
       },
       uTexNext: {
-        value: await loadTex('/img/nightsky.jpg'),
+        value: await loadTex(textureImage2),
       },
 
       // 画像変遷の際に使用される画像を指定
       uTexDisp: {
-        value: await loadTex('/img/displacement/displacement2.jpg'),
+        value: await loadTex(displacementImage),
       },
       uTick: {
         value: 0,

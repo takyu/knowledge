@@ -4,6 +4,11 @@ import GUI from 'lil-gui';
 import vertexShader from '@shader/03_three_shader/090_noise_image/vertex.glsl';
 import fragmentShader from '@shader/03_three_shader/090_noise_image/fragment.glsl';
 
+/**
+ * image files
+ */
+import textureImage from '@img/aurora.jpg';
+
 init();
 
 // texture を取得する関数
@@ -43,7 +48,7 @@ async function init() {
   const material = new THREE.ShaderMaterial({
     uniforms: {
       uTex: {
-        value: await loadTex('/img/aurora.jpg'),
+        value: await loadTex(textureImage),
       },
       uTick: {
         value: 0,

@@ -1,5 +1,11 @@
 import * as THREE from 'three';
 
+/**
+ * image files
+ */
+import textureImage from '@img/aurora.jpg';
+import textureImage2 from '@img/forest.jpg';
+
 init();
 
 async function init() {
@@ -18,8 +24,8 @@ async function init() {
   const geometry = new THREE.PlaneGeometry(20, 10);
 
   const texLoader = new THREE.TextureLoader();
-  const textureAurora = await texLoader.loadAsync('/img/aurora.jpg');
-  const textureForest = await texLoader.loadAsync('/img/forest.jpg');
+  const textureAurora = await texLoader.loadAsync(textureImage);
+  const textureForest = await texLoader.loadAsync(textureImage2);
 
   const material = new THREE.MeshBasicMaterial({
     map: textureAurora,

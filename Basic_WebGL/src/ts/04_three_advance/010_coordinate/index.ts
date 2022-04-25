@@ -75,14 +75,20 @@ function printMat(
   targetMatrix:
     | THREE.BufferAttribute
     | THREE.InterleavedBufferAttribute
-    | THREE.Matrix4,
+    | THREE.Matrix4
+    | number[],
   col = 4,
   label = ''
 ) {
-  const mat1D: number[] =
-    'array' in targetMatrix
-      ? (targetMatrix.array as number[])
-      : targetMatrix.elements;
+  let mat1D: number[] = [];
+
+  if ('array' in targetMatrix) {
+    mat1D = targetMatrix.array as number[];
+  } else if ('elements' in targetMatrix) {
+    mat1D = targetMatrix.elements;
+  } else {
+    mat1D = targetMatrix;
+  }
 
   setTimeout(() => {
     // 非同期でマトリクスが更新されるため、非同期で実行

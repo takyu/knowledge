@@ -20,6 +20,11 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import vertexShader from '@shader/04_three_advance/020_sticky_plane/vertex.glsl';
 import fragmentShader from '@shader/04_three_advance/020_sticky_plane/fragment.glsl';
 
+/**
+ * image file
+ */
+import textureImage from '@img/aurora.jpg';
+
 init();
 
 // 遅延時間を伴った Geometry を作成する関数
@@ -101,7 +106,7 @@ async function init() {
   const material = new THREE.ShaderMaterial({
     uniforms: {
       uTex: {
-        value: await loadTex('/img/aurora.jpg'),
+        value: await loadTex(textureImage),
       },
       uTick: {
         value: 0,
@@ -157,5 +162,3 @@ async function init() {
 
   animate();
 }
-
-export = {};

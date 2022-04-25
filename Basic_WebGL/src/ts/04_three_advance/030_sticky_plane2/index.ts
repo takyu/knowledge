@@ -21,6 +21,11 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import vertexShader from '@shader/04_three_advance/030_sticky_plane2/vertex.glsl';
 import fragmentShader from '@shader/04_three_advance/030_sticky_plane2/fragment.glsl';
 
+/**
+ * image file
+ */
+import textureImage from '@img/aurora.jpg';
+
 init();
 
 // 0~1 までの値を step 毎に返す
@@ -103,20 +108,35 @@ function getDiagonalVertices(
 }
 
 // 遅延時間の行列を表示
-function printMat(targetMatrix: number[], col = 4, label = '') {
+function printMat(
+  targetMatrix:
+    | THREE.BufferAttribute
+    | THREE.InterleavedBufferAttribute
+    | THREE.Matrix4
+    | number[],
+  col = 4,
+  label = ''
+) {
+  let mat1D: number[] = [];
+
+  if ('array' in targetMatrix) {
+    mat1D = targetMatrix.array as number[];
+  } else if ('elements' in targetMatrix) {
+    mat1D = targetMatrix.elements;
+  } else {
+    mat1D = targetMatrix;
+  }
+
   setTimeout(() => {
     // 非同期でマトリクスが更新されるため、非同期で実行
-    let mat2D = targetMatrix.reduce(
-      (arry2D: number[][], v: number, i: number) => {
-        if (i % col === 0) arry2D.push([]);
+    let mat2D = mat1D.reduce((arry2D: number[][], v: number, i: number) => {
+      if (i % col === 0) arry2D.push([]);
 
-        const lastArry = arry2D[arry2D.length - 1];
-        lastArry.push(v);
+      const lastArry = arry2D[arry2D.length - 1];
+      lastArry.push(v);
 
-        return arry2D;
-      },
-      []
-    );
+      return arry2D;
+    }, []);
 
     console.log(
       `%c${label}`,
@@ -196,7 +216,7 @@ async function init() {
   const material = new THREE.ShaderMaterial({
     uniforms: {
       uTex: {
-        value: await loadTex('/img/aurora.jpg'),
+        value: await loadTex(textureImage),
       },
       uTick: {
         value: 0,
@@ -252,5 +272,3 @@ async function init() {
 
   animate();
 }
-
-export = {};

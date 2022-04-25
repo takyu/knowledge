@@ -1,5 +1,10 @@
 import * as THREE from 'three';
 
+/**
+ * image files
+ */
+import textureImage from '@img/aurora.jpg';
+
 init();
 
 // texture を取得する関数
@@ -33,7 +38,7 @@ async function init() {
      */
     uniforms: {
       uTex: {
-        value: await loadTex('/img/aurora.jpg'),
+        value: await loadTex(textureImage),
       },
     },
     vertexShader: `
