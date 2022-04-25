@@ -15,8 +15,8 @@ uniform float uProgress;
 void main() {
   vec3 pos = position;
 
-  float verticalDelay = distance(vec2(0., 1.), uv) / distance(vec2(0., 1.), vec2(1., 0.));
-  vDelay = verticalDelay;
+  float diagonalDelay = distance(vec2(0., 1.), uv) / distance(vec2(0., 1.), vec2(1., 0.));
+  vDelay = diagonalDelay;
 
   /**
   * ・上から下に変遷させたいために、( 1 - uv.y ) で、y 座標 1 の方から変遷

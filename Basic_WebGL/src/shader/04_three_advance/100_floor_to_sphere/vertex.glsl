@@ -18,8 +18,8 @@ uniform float uProgress;
 void main() {
   vUv = uv;
 
-  float verticalDelay = distance(vec2(0., 1.), uv) / distance(vec2(0., 1.), vec2(1., 0.));
-  vDelay = verticalDelay;
+  float diagonalDelay = distance(vec2(0., 1.), uv) / distance(vec2(0., 1.), vec2(1., 0.));
+  vDelay = diagonalDelay;
 
   /* 平面（床）の頂点位置 */
   vec3 p = position;
@@ -28,7 +28,7 @@ void main() {
   vec3 s = sphere;
 
   /* 平面（床）の波の設定 */
-  float wavePlane = sin(uTick * 0.02 - verticalDelay * 10.);
+  float wavePlane = sin(uTick * 0.02 - diagonalDelay * 10.);
 
   /* 球体の波の設定 */
   float waveSphere = sin(uTick * 0.02 - uv.y * 10.);

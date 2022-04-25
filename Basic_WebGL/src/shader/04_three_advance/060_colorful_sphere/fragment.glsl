@@ -30,6 +30,9 @@ void main() {
   // 各 point に対して、texture を貼り付ける
   vec4 tex = texture(uTex, gl_PointCoord);
 
+  // 画像が上下逆さまになっているのを、新たなベクトルを用意して対応
+  // vec4 tex = texture(uTex, vec2(gl_PointCoord.x, 1. - gl_PointCoord.y));
+
   /**
   * どうやって、texture を、下から上に描写させるようにできるのか。
   *
