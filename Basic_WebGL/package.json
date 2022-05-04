@@ -9,6 +9,8 @@
     "start": "webpack serve --color --progress",
     "dev": "webpack --color --progress",
     "prod": "webpack --color --progress --config webpack.config.prod.js",
+    "preplsv": "webpack --color --progress --config webpack.config.prod.js",
+    "plsv": "lite-server -c bs-config.json",
     "watch": "webpack --watch --color --progress",
     "predeploy": "webpack --color --progress --config webpack.config.prod.js",
     "deploy": "gh-pages -d dist"

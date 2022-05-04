@@ -2,4 +2,5 @@
 
 interface Window {
   geometry: THREE.PlaneGeometry;
+  randomNumber: Function;
 }
